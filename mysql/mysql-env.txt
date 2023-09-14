@@ -1,0 +1,4 @@
+MYSQL_ROOT_PASSWORD=root_password
+MYSQL_DATABASE=madrid_eats_db
+MYSQL_USER=springuser
+MYSQL_PASSWORD=wBwNr3gn

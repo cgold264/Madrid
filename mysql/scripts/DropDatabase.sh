@@ -1,1 +1,0 @@
-docker kill mysql-database
