@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import AOS from 'aos';
+import fetchBars from '../../services/barsService';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -23,10 +24,14 @@ const rows = [
   createData('Gingerbread', 356, 16.0),
 ];
 
+
 export default function RestaurantTable() {
     useEffect(() => {
         AOS.init();
-      }, []);        
+      }, []);
+      
+    console.log("pass test")
+    console.log(fetchBars());
 
   return (
     <section id="RestaurantTable">

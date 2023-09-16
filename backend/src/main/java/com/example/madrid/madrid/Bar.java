@@ -1,9 +1,9 @@
 package com.example.madrid.madrid;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Bar {
@@ -12,7 +12,7 @@ public class Bar {
     private Long id;
     private String name;
     private String drink;
-    private double price;
+    private String price;
 
     // Getters and setters
     
@@ -40,11 +40,11 @@ public class Bar {
         this.drink = drink;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }
