@@ -3,6 +3,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 function Hero() {
 
@@ -38,22 +40,19 @@ function Hero() {
                 </div>
         </Popup> : null}
         <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
-            <Typography
-            component="h1"
-            variant="h2"
-            align="center"
-            color="text.primary"
-            gutterBottom
-            >
-            Pricing
-            </Typography>
-            <Typography variant="h5" align="center" color="text.secondary" component="p">
-            Quickly build an effective pricing table for your potential customers with
-            this layout. It&apos;s built with default MUI components with little
-            customization.
-            </Typography>
+            <div className='text-light text-center'>
+                <h1>
+                Pricing
+                </h1>
+            </div>
+            <div className='text-light text-center font-weight-lighter'>
+                <h5>
+                Navigate the streets of madrid without the burden of finding the best and cheapest 
+                eats in the city.
+                </h5>
+            </div>
             <div className="text-center m-3">
-            <button className="btn btn-primary" onClick={() => {setAddRestaurant(true)}}>Add a New Restaurant</button>
+            <button className="btn btn-primary" onClick={() => {setAddRestaurant(true)}}>Submit a New Restaurant</button>
             </div>
         </Container>
   </>

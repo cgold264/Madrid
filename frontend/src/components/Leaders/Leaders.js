@@ -14,7 +14,7 @@ import 'aos/dist/aos.css';
 
 const tiers = [
     {
-      title: 'Free',
+      title: 'First',
       price: '0',
       description: [
         '10 users included',

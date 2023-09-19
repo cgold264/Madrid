@@ -1,7 +1,7 @@
 const apiUrl = 'http://localhost:8080';
 
 export function fetchBars() {
-    return fetch(apiUrl + "/demo/all")
+    return fetch(apiUrl + "/bars/all")
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -20,7 +20,7 @@ export function fetchBars() {
 }
 
 export function fetchRestaurants() {
-    return fetch(apiUrl + "/demo/all")
+    return fetch(apiUrl + "/restaurants/all")
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');

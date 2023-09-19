@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
@@ -6,11 +6,12 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
-import Navbar from './components/navbar/Navbar';
 import Leaders from './components/Leaders/Leaders';
 import RestaurantList from './components/RestaurantList/RestaurantList';
 import RestaurantTable from './components/RestaurantTable/RestaurantTable';
 import Hero from './components/Hero/Hero';
+import './App.css';
+import MainNav from './components/mainNav/MainNav';
 
 function Copyright(props) {
   return (
@@ -54,15 +55,20 @@ const footers = [
 const defaultTheme = createTheme();
 
  function App() {
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
-      <Navbar />
+      <MainNav />
       {/* Hero unit */}
-      <Hero />
+      <div className="background p-4">
+        <Hero />
+        <Leaders />
+      </div>
+      
       {/* End hero unit */}
-      <Leaders />
+      
       <RestaurantList />
       <RestaurantTable />
       {/* Footer */}

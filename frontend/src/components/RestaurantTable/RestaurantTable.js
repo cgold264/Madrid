@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import AOS from 'aos';
-import {allBars} from '../../services/tableDataService';
+import {allBars, allRestaurants} from '../../services/tableDataService';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -34,6 +34,10 @@ export default function RestaurantTable() {
           console.log("data", data)
           setBarRows(data)
         })
+        allRestaurants().then(data => {
+          console.log("restaurants", data)
+        }
+        )
       }, []);
 
      const [barRows, setBarRows] = useState()
