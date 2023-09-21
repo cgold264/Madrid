@@ -14,7 +14,7 @@ public class Restaurant {
     private Long id;
     private String name;
     private String item;
-    private String price;
+    private Double price;
 
     // Getters and setters
     
@@ -42,11 +42,11 @@ public class Restaurant {
         this.item = item;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }

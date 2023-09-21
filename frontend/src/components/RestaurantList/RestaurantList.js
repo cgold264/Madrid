@@ -19,12 +19,11 @@ function RestaurantList() {
 
 
     return <section id="restaurantList">
-      <div data-aos="fade-up">
+      <div data-aos="fade-up" className="bg-dark">
                 <Container
             maxWidth="md"
             sx={{
             borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-            my: 8,
             py: [6, 6],
             }}
         > 

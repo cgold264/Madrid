@@ -12,48 +12,8 @@ import Grid from '@mui/material/Grid';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-const tiers = [
-    {
-      title: 'First',
-      price: '0',
-      description: [
-        '10 users included',
-        '2 GB of storage',
-        'Help center access',
-        'Email support',
-      ],
-      buttonText: 'Sign up for free',
-      buttonVariant: 'outlined',
-    },
-    {
-      title: 'Pro',
-      subheader: 'Most popular',
-      price: '15',
-      description: [
-        '20 users included',
-        '10 GB of storage',
-        'Help center access',
-        'Priority email support',
-      ],
-      buttonText: 'Get started',
-      buttonVariant: 'contained',
-    },
-    {
-      title: 'Enterprise',
-      price: '30',
-      description: [
-        '50 users included',
-        '30 GB of storage',
-        'Help center access',
-        'Phone & email support',
-      ],
-      buttonText: 'Contact us',
-      buttonVariant: 'outlined',
-    },
-  ];
-
-  
-function Leaders() {
+function Leaders(props) {
+  const tiers = props.restaurants ? [{...props.restaurants[0], place: "first"}, {...props.restaurants[1], place: "second"}, {...props.restaurants[2], place:"third"}] : null;
   useEffect(() => {
     AOS.init();
   }, []);
@@ -61,21 +21,21 @@ function Leaders() {
       <div data-aos="fade-up">
       <Container maxWidth="md" component="main" >
             <Grid container spacing={5} alignItems="flex-end">
-              {tiers.map((tier) => (
+              {tiers?.map((tier) => (
                 // Enterprise card is full width at sm breakpoint
                 <Grid
                   item
-                  key={tier.title}
+                  key={tier.name}
                   xs={12}
-                  sm={tier.title === 'Enterprise' ? 12 : 6}
+                  sm={12}
                   md={4}
                 >
                   <Card>
                     <CardHeader
-                      title={tier.title}
-                      subheader={tier.subheader}
+                      title={tier.name}
+                      subheader={tier.place === 'first' ? 'Current Winner' : null}
                       titleTypographyProps={{ align: 'center' }}
-                      action={tier.title === 'Pro' ? <StarIcon /> : null}
+                      action={tier.place === 'first' ? <StarIcon /> : null}
                       subheaderTypographyProps={{
                         align: 'center',
                       }}
@@ -99,11 +59,11 @@ function Leaders() {
                           ${tier.price}
                         </Typography>
                         <Typography variant="h6" color="text.secondary">
-                          /mo
+                          /{tier.item}
                         </Typography>
                       </Box>
                       <ul>
-                        {tier.description.map((line) => (
+                        {/* {tier.description.map((line) => (
                           <Typography
                             component="li"
                             variant="subtitle1"
@@ -112,12 +72,12 @@ function Leaders() {
                           >
                             {line}
                           </Typography>
-                        ))}
+                        ))} */}
                       </ul>
                     </CardContent>
                     <CardActions>
-                      <Button fullWidth variant={tier.buttonVariant}>
-                        {tier.buttonText}
+                      <Button fullWidth variant={'outlined'}>
+                        {"info"}
                       </Button>
                     </CardActions>
                   </Card>

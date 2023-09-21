@@ -34,18 +34,21 @@ export default function RestaurantTable() {
           console.log("data", data)
           setBarRows(data)
         })
-        allRestaurants().then(data => {
-          console.log("restaurants", data)
-        }
-        )
+       
       }, []);
 
      const [barRows, setBarRows] = useState()
      
   return (
-    <section id="RestaurantTable">
+    <section id="RestaurantTable" className='bg-dark'>
         <div data-aos="fade-up">
-        <Container maxWidth="md" component="main" >
+        <Container maxWidth="md" component="main"
+          sx={{
+            borderTop: `1px solid `,
+            borderColor: 'text.primary',
+            py: [0, 8],
+          }}
+         >
           <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>

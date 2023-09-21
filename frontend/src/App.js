@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
@@ -10,8 +10,10 @@ import Leaders from './components/Leaders/Leaders';
 import RestaurantList from './components/RestaurantList/RestaurantList';
 import RestaurantTable from './components/RestaurantTable/RestaurantTable';
 import Hero from './components/Hero/Hero';
-import './App.css';
 import MainNav from './components/mainNav/MainNav';
+import {allBars, allRestaurants} from './services/tableDataService';
+import './App.scss';
+
 
 function Copyright(props) {
   return (
@@ -52,19 +54,36 @@ const footers = [
 ];
 
 // TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
+const defaultTheme = createTheme({
+  palette: {
+    dark: {
+    },
+  },
+});
 
- function App() {
+function App() {
+
+  useEffect(() => {
+    allBars().then(data => {
+      console.log("data", data)
+    })
+    allRestaurants().then(data => {
+      setRestaurants(data)
+    })
+   }, []);
+
+   const [restaurants, setRestaurants] = useState();
 
   return (
+    <div className='bg-dark'>
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
       <MainNav />
       {/* Hero unit */}
-      <div className="background p-4">
+      <div className="background p-4 bg-dark">
         <Hero />
-        <Leaders />
+        <Leaders restaurants={restaurants}/>
       </div>
       
       {/* End hero unit */}
@@ -76,23 +95,23 @@ const defaultTheme = createTheme();
         maxWidth="md"
         component="footer"
         sx={{
-          borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-          mt: 8,
+          borderTop: `1px solid `,
+          borderColor: 'text.primary',
           py: [3, 6],
         }}
       >
         <Grid container spacing={4} justifyContent="space-evenly">
           {footers.map((footer) => (
             <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="text.primary" gutterBottom>
-                {footer.title}
-              </Typography>
+              <h6 className="text-light">
+              {footer.title}
+              </h6>
               <ul>
                 {footer.description.map((item) => (
                   <li key={item}>
-                    <Link href="#" variant="subtitle1" color="text.secondary">
-                      {item}
-                    </Link>
+                    <a href="3" className="text-light">
+                    {item}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -103,6 +122,7 @@ const defaultTheme = createTheme();
       </Container>
       {/* End footer */}
     </ThemeProvider>
+    </div>
   );
 }
 
