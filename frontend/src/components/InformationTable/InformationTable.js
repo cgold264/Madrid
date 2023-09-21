@@ -12,33 +12,15 @@ import {allBars, allRestaurants} from '../../services/tableDataService';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function createData(name, drink, price) {
-  return { name, drink, price};
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Eclair', 262, 16.0),
-  createData('Cupcake', 305, 3.7),
-  createData('Gingerbread', 356, 16.0),
-];
 
 
 
 
-export default function RestaurantTable() {
-    useEffect(() => {
-        AOS.init();
-        allBars().then(data => {
-          console.log("data", data)
-          setBarRows(data)
-        })
-       
-      }, []);
 
-     const [barRows, setBarRows] = useState()
-     
+export default function InformationTable(props) {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <section id="RestaurantTable" className='bg-dark'>
         <div data-aos="fade-up">
@@ -53,13 +35,13 @@ export default function RestaurantTable() {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
               <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell align="right">Drink</TableCell>
-                  <TableCell align="right">Price</TableCell>
+                {props.rows?.map((row) => (
+                  <TableCell>{row}</TableCell>
+                ))}
               </TableRow>
               </TableHead>
               <TableBody>
-              {barRows?.map((row) => (
+              {props.data?.map((row) => (
                   <TableRow
                   key={row.name}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -67,11 +49,10 @@ export default function RestaurantTable() {
                   <TableCell component="th" scope="row">
                       {row.name}
                   </TableCell>
-                  <TableCell align="right">{row.drink}</TableCell>
+                  <TableCell align="right">{row.item}</TableCell>
                   <TableCell align="right">{row.price}</TableCell>
                   </TableRow>
               ))}
-              {console.log("component", barRows)}
 
               </TableBody>
           </Table>

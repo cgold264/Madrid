@@ -6,12 +6,10 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
-import Leaders from './components/Leaders/Leaders';
-import RestaurantList from './components/RestaurantList/RestaurantList';
-import RestaurantTable from './components/RestaurantTable/RestaurantTable';
-import Hero from './components/Hero/Hero';
+
 import MainNav from './components/mainNav/MainNav';
-import {allBars, allRestaurants} from './services/tableDataService';
+import RestaurantPage from'./components/RestaurantPage/RestaurantPage';
+import {allBars} from './services/tableDataService';
 import './App.scss';
 
 
@@ -67,12 +65,8 @@ function App() {
     allBars().then(data => {
       console.log("data", data)
     })
-    allRestaurants().then(data => {
-      setRestaurants(data)
-    })
    }, []);
 
-   const [restaurants, setRestaurants] = useState();
 
   return (
     <div className='bg-dark'>
@@ -80,16 +74,10 @@ function App() {
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
       <MainNav />
-      {/* Hero unit */}
-      <div className="background p-4 bg-dark">
-        <Hero />
-        <Leaders restaurants={restaurants}/>
-      </div>
+      {/* Restaurant Page */}
+      <RestaurantPage />
       
-      {/* End hero unit */}
-      
-      <RestaurantList />
-      <RestaurantTable />
+      {/* End Restaurant Page */}
       {/* Footer */}
       <Container
         maxWidth="md"

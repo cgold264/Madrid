@@ -1,6 +1,7 @@
 import {
 fetchBars,
-fetchRestaurants
+fetchRestaurants,
+addNewRestaurant
 } from './service';
 
 export async function allBars(){
@@ -18,6 +19,15 @@ export async function allRestaurants(){
         const data = await fetchRestaurants();
         console.log("table service", data)
         return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+export async function addRestaurant(payload){
+    try{
+        await addNewRestaurant(payload);
+        console.log("add Restaurant service")
     } catch (error) {
         console.error('Error:', error);
     }
