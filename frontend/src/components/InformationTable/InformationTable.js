@@ -8,11 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import AOS from 'aos';
-import {allBars, allRestaurants} from '../../services/tableDataService';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
 
 
 
@@ -21,6 +18,7 @@ export default function InformationTable(props) {
   useEffect(() => {
     AOS.init();
   }, []);
+
   return (
     <section id="RestaurantTable" className='bg-dark'>
         <div data-aos="fade-up">
@@ -33,10 +31,10 @@ export default function InformationTable(props) {
          >
           <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
+              <TableHead >
               <TableRow>
                 {props.rows?.map((row) => (
-                  <TableCell>{row}</TableCell>
+                  <TableCell align="center"><b>{row}</b></TableCell>
                 ))}
               </TableRow>
               </TableHead>
@@ -46,11 +44,11 @@ export default function InformationTable(props) {
                   key={row.name}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
-                  <TableCell component="th" scope="row">
+                  <TableCell align="center">
                       {row.name}
                   </TableCell>
-                  <TableCell align="right">{row.item}</TableCell>
-                  <TableCell align="right">{row.price}</TableCell>
+                  <TableCell align="center">{row.item}</TableCell>
+                  <TableCell align="center">{row.price}</TableCell>
                   </TableRow>
               ))}
 
