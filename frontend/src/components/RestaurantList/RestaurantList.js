@@ -12,7 +12,8 @@ import 'aos/dist/aos.css';
 
 const cards = [1, 2, 3, 4, 5, 6];
 
-function RestaurantList() {
+function RestaurantList(props) {
+
   useEffect(() => {
     AOS.init();
   }, []);
@@ -28,7 +29,7 @@ function RestaurantList() {
             }}
         > 
         <Grid container spacing={4}>
-            {cards.map((card) => (
+            {props.items?.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
@@ -39,11 +40,11 @@ function RestaurantList() {
                       // 16:9
                       pt: '56.25%',
                     }}
-                    image="https://source.unsplash.com/random?wallpapers"
+                    image={card.x_cord ? "../../../public/logo192.jpg" : "../../../public/madrid_header.jpg"}
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {card.name}
                     </Typography>
                     <Typography>
                       This is a media card. You can use this section to describe the
@@ -52,7 +53,7 @@ function RestaurantList() {
                   </CardContent>
                   <CardActions>
                     <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
+                    {/* <Button size="small">Edit</Button> */}
                   </CardActions>
                 </Card>
               </Grid>

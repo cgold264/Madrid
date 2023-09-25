@@ -2,24 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import 'bootstrap/dist/css/bootstrap.css';
 import Popup from 'reactjs-popup';
+import Button from 'react-bootstrap/Button';
 import Leaders from '../Leaders/Leaders';
 import RestaurantList from '../RestaurantList/RestaurantList';
 import RestaurantTable from '../InformationTable/InformationTable';
-import {allRestaurants} from '../../services/tableDataService';
+import {allRestaurants, addRestaurant} from '../../services/tableDataService';
 import 'reactjs-popup/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-
-function createData(name, item, price) {
-    return { name, item, price};
-  }
-  
-  const rows = [
-    createData('Frozen yoghurt', 159, 6.0),
-    createData('Ice cream sandwich', 237, 9.0),
-    createData('Eclair', 262, 16.0),
-    createData('Cupcake', 305, 3.7),
-    createData('Gingerbread', 356, 16.0),
-  ];
 
 function Hero() {
     useEffect(() => {
@@ -48,7 +37,7 @@ function Hero() {
                  class="form-control" 
                  aria-label="Small" 
                  aria-describedby="inputGroup-sizing-sm" 
-                 onChange={(input) => {setRestaurantInput({...restaurantInput, name: input.nativeEvent.data})}}></input>
+                 onChange={(input) => {setRestaurantInput({...restaurantInput, name: input.target.value})}}></input>
              </div>
              <div class="input-group input-group-sm mb-3">
                  <div class="input-group-prepend">
@@ -59,7 +48,7 @@ function Hero() {
                  class="form-control" 
                  aria-label="Small" 
                  aria-describedby="inputGroup-sizing-sm"
-                 onChange={(input) => {setRestaurantInput({...restaurantInput, item: input.nativeEvent.data})}}></input>
+                 onChange={(input) => {setRestaurantInput({...restaurantInput, item: input.target.value})}}></input>
              </div>
              <div class="input-group input-group-sm mb-3">
                  <div class="input-group-prepend">
@@ -70,10 +59,16 @@ function Hero() {
                  class="form-control" 
                  aria-label="Small" 
                  aria-describedby="inputGroup-sizing-sm"
-                 onChange={(input) => {setRestaurantInput({...restaurantInput, cost: input.nativeEvent.data})}}></input>
+                 onChange={input => setRestaurantInput({...restaurantInput, price: input.target.value})}></input>
              </div>
              <div className="col-12">
-                 <button className="btn btn-primary" onClick={() => {setRestaurantPopup(false);console.log(restaurantInput)}}>Save</button>
+                 <button 
+                 className="btn btn-primary" 
+                 onClick={() => {
+                        setRestaurantPopup(false); 
+                        addRestaurant(restaurantInput); 
+                        setRestaurantData([...restaurantData, restaurantInput])
+                    }}>Save</button>
              </div>
          </div>
          </Popup> 
@@ -82,24 +77,23 @@ function Hero() {
             <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
                 <div className='text-light text-center'>
                     <h1>
-                    Pricing
+                        Pricing
                     </h1>
                 </div>
                 <div className='text-light text-center font-weight-lighter'>
                     <h5>
-                    Navigate the streets of madrid without the burden of finding the best and cheapest 
-                    eats in the city.
+                        Navigate the streets of madrid without the burden of finding the best and cheapest 
+                        eats in the city.
                     </h5>
                 </div>
                 <div className="text-center m-3">
-                <button className="btn btn-primary" onClick={() => {setRestaurantPopup(true)}}>Submit a New Restaurant</button>
+                    <Button variant="outline-primary" onClick={() => {setRestaurantPopup(true)}}>Submit a New Restaurant</Button>
                 </div>
                 <Leaders restaurants={restaurantData}/>
             </Container>
         </div>
-        <RestaurantList />
-        <RestaurantTable rows={["Name", "Item", "Price"]} data={rows}/>
-
+        <RestaurantList items={restaurantData?.slice(2, 8)}/>
+        <RestaurantTable rows={["Name", "Item", "Price"]} data={restaurantData?.slice(8, restaurantData.length)}/>
   </>
 }
 

@@ -30,7 +30,8 @@ function Leaders(props) {
                   sm={12}
                   md={4}
                 >
-                  <Card>
+                  <Card
+                  >
                     <CardHeader
                       title={tier.name}
                       subheader={tier.place === 'first' ? 'Current Winner' : null}
@@ -63,16 +64,14 @@ function Leaders(props) {
                         </Typography>
                       </Box>
                       <ul>
-                        {/* {tier.description.map((line) => (
-                          <Typography
+                      <Typography
                             component="li"
                             variant="subtitle1"
                             align="center"
-                            key={line}
                           >
-                            {line}
+                            Lorem5
                           </Typography>
-                        ))} */}
+
                       </ul>
                     </CardContent>
                     <CardActions>
