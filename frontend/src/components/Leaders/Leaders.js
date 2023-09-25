@@ -19,8 +19,8 @@ function Leaders(props) {
   }, []);
     return <section id="Leaders">
       <div data-aos="fade-up">
-      <Container maxWidth="md" component="main" >
-            <Grid container spacing={5} alignItems="flex-end">
+      <Container maxWidth="lg" component="main" >
+            <Grid container spacing={10} alignItems="flex-end">
               {tiers?.map((tier) => (
                 // Enterprise card is full width at sm breakpoint
                 <Grid
@@ -53,7 +53,7 @@ function Leaders(props) {
                           display: 'flex',
                           justifyContent: 'center',
                           alignItems: 'baseline',
-                          mb: 2,
+              
                         }}
                       >
                         <Typography component="h2" variant="h3" color="text.primary">
@@ -69,7 +69,7 @@ function Leaders(props) {
                             variant="subtitle1"
                             align="center"
                           >
-                            Lorem5
+                            {tier.description}
                           </Typography>
 
                       </ul>

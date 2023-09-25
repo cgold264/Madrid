@@ -19,7 +19,8 @@ public class RestaurantController {
 
   @PostMapping(path="/add") // Map ONLY POST Requests
   public @ResponseBody String addNewRestaurant (@RequestParam String name
-      , @RequestParam String item, @RequestParam Double price) {
+      , @RequestParam String item, @RequestParam Double price, @RequestParam String description,
+      @RequestParam Double latitude, @RequestParam Double longitude) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
 
@@ -27,6 +28,9 @@ public class RestaurantController {
     n.setName(name);
     n.setItem(item);
     n.setPrice(price);
+    n.setDescription(description);
+    n.setLatitude(latitude);
+    n.setLongitude(longitude);
     restaurantRepository.save(n);
     return "Saved";
   }

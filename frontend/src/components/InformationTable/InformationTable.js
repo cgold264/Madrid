@@ -41,14 +41,14 @@ export default function InformationTable(props) {
               <TableBody>
               {props.data?.map((row) => (
                   <TableRow
-                  key={row.name}
+                  key={row?.name}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                   <TableCell align="center">
-                      {row.name}
+                      {row?.name}
                   </TableCell>
-                  <TableCell align="center">{row.item}</TableCell>
-                  <TableCell align="center">{row.price}</TableCell>
+                  <TableCell align="center">{row?.item}</TableCell>
+                  <TableCell align="center">{row?.price}</TableCell>
                   </TableRow>
               ))}
 
