@@ -5,7 +5,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+//import Button from '@mui/material/Button';
+import Button from 'react-bootstrap/Button';
 import Container from '@mui/material/Container';
 import StarIcon from '@mui/icons-material/StarBorder';
 import Grid from '@mui/material/Grid';
@@ -13,78 +14,77 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 function Leaders(props) {
-  const tiers = props.restaurants ? [{...props.restaurants[0], place: "first"}, {...props.restaurants[1], place: "second"}, {...props.restaurants[2], place:"third"}] : null;
+  const tiers = props.restaurants ? [{...props.restaurants[1], place: "second"}, {...props.restaurants[0], place: "first"}, {...props.restaurants[2], place:"third"}] : null;
   useEffect(() => {
     AOS.init();
   }, []);
     return <section id="Leaders">
       <div data-aos="fade-up">
-      <Container maxWidth="lg" component="main" >
-            <Grid container spacing={10} alignItems="flex-end">
+            <Grid container spacing={5} alignItems="flex-end">
               {tiers?.map((tier) => (
                 // Enterprise card is full width at sm breakpoint
-                <Grid
-                  item
-                  key={tier.name}
-                  xs={12}
-                  sm={12}
-                  md={4}
-                >
-                  <Card
+                  <Grid
+                    item
+                    key={tier.name}
+                    xs={12}
+                    sm={12}
+                    md={4}
                   >
-                    <CardHeader
-                      title={tier.name}
-                      subheader={tier.place === 'first' ? 'Current Winner' : null}
-                      titleTypographyProps={{ align: 'center' }}
-                      action={tier.place === 'first' ? <StarIcon /> : null}
-                      subheaderTypographyProps={{
-                        align: 'center',
-                      }}
-                      sx={{
-                        backgroundColor: (theme) =>
-                          theme.palette.mode === 'light'
-                            ? theme.palette.grey[200]
-                            : theme.palette.grey[700],
-                      }}
-                    />
-                    <CardContent>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'baseline',
-              
+                  <Card>
+                      <CardHeader
+                        title={tier.name}
+                        subheader={tier.place === 'first' ? 'Current Winner' : null}
+                        titleTypographyProps={{ align: 'center' }}
+                        action={tier.place === 'first' ? <StarIcon /> : null}
+                        subheaderTypographyProps={{
+                          align: 'center',
                         }}
+                        sx={{
+                          backgroundColor: "#bababa"
+                        }}
+                      />
+                      <CardContent
+                      sx={{
+                        backgroundColor: "transparent"
+                      }}
                       >
-                        <Typography component="h2" variant="h3" color="text.primary">
-                          ${tier.price}
-                        </Typography>
-                        <Typography variant="h6" color="text.secondary">
-                          /{tier.item}
-                        </Typography>
-                      </Box>
-                      <ul>
-                      <Typography
-                            component="li"
-                            variant="subtitle1"
-                            align="center"
-                          >
-                            {tier.description}
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'baseline',
+                
+                          }}
+                        >
+                          <Typography component="h2" variant="h3" color="text.primary">
+                            ${tier.price}
                           </Typography>
-
-                      </ul>
-                    </CardContent>
-                    <CardActions>
-                      <Button fullWidth variant={'outlined'}>
-                        {"info"}
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
+                          <Typography variant="h6" color="text.secondary">
+                            /{tier.item}
+                          </Typography>
+                        </Box>
+                        <ul>
+                          <div className="m-1">
+                          <Typography
+                                component="li"
+                                variant="subtitle1"
+                                align="center"
+                              >
+                                {tier.description}
+                            </Typography>
+                            </div>
+                        </ul>
+                      </CardContent>
+                      <CardActions>
+                        <Button variant={tier.place !== 'first' ?'outline-primary' : 'primary'} className="w-100">
+                          {"info"}
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  </Grid>
               ))}
             </Grid>
-            </Container>
-            </div>
+          </div>
         </section>
 }
 

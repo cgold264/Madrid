@@ -105,7 +105,7 @@ function Hero() {
          </Popup> 
          : null}
         <div className="background p-4 bg-dark">
-            <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
+            <Container disableGutters maxWidth="lg" component="main" sx={{ pt: 8, pb: 6 }}>
                 <div className='text-light text-center'>
                     <h1>
                         Pricing
@@ -117,10 +117,10 @@ function Hero() {
                         eats in the city.
                     </h5>
                 </div>
-                <div className="text-center ">
-                    <Button variant="outline-primary" onClick={() => {setRestaurantPopup(true)}}>Submit a New Restaurant</Button>
+                <div className="text-center mb-5">
+                        <Button variant="outline-primary" onClick={() => {setRestaurantPopup(true)}}>Submit a New Restaurant</Button>
                 </div>
-                <div className="m-5">
+                <div className="row mt-5 overflow-hidden">
                     <Leaders restaurants={restaurantData}/>
                 </div>
             </Container>
