@@ -11,7 +11,6 @@ export function fetchBars() {
         .then(data => {
             // returnVal = data
             // console.log("service", data);
-            console.log(data)
             return data
         })
         .catch(error => {

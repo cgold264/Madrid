@@ -8,13 +8,10 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
 import MainNav from './components/mainNav/MainNav';
 import RestaurantPage from'./components/RestaurantPage/RestaurantPage';
+import {addUserLocation} from './actions/userActions';
+import { useDispatch } from 'react-redux';
 import {allBars} from './services/tableDataService';
 import './App.scss';
-
-
-
-
-
 
 function Copyright(props) {
   return (
@@ -63,14 +60,23 @@ const defaultTheme = createTheme({
 });
 
 function App() {
-
+  const dispatch = useDispatch();
 
 
   useEffect(() => {
     allBars().then(data => {
-      console.log("data", data)
     })
    }, []);
+
+   useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+          dispatch(addUserLocation({latitude: position.coords.latitude, longitude: position.coords.longitude}))
+      });
+    } else { 
+        console.log("Geolocation is not supported by this browser.");
+    }
+   }, [dispatch])
 
 
   return (

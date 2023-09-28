@@ -1,5 +1,7 @@
 package com.example.madrid.madrid;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.stereotype.Controller;
@@ -20,7 +22,7 @@ public class RestaurantController {
   @PostMapping(path="/add") // Map ONLY POST Requests
   public @ResponseBody String addNewRestaurant (@RequestParam String name
       , @RequestParam String item, @RequestParam Double price, @RequestParam String description,
-      @RequestParam Double latitude, @RequestParam Double longitude) {
+      @RequestParam BigDecimal latitude, @RequestParam BigDecimal longitude) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
 

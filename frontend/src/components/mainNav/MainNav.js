@@ -6,18 +6,25 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import Popup from 'reactjs-popup';
+import { useSelector, useDispatch } from 'react-redux';
 import 'reactjs-popup/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import RestaurantPopup from '../RestaurantPopup/RestaurantPopup';
+import { trueRestaurantPopup } from '../../actions/restaurantActions';
 
 
 
 const expand = 'lg';
 
 function MainNav() {
-  const [restaurantPopup, setRestaurantPopup] = useState(false)
+  const dispatch = useDispatch()
+  const {inputRestaurant} = useSelector((state) => state.popups)
+
   return (
     <>
+      {inputRestaurant ?
+      <RestaurantPopup />
+      :null}
         <Navbar key={expand} expand={expand} data-bs-theme="dark" className="bg-body-tertiary p-3">
           <Container fluid>
             <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
@@ -41,7 +48,9 @@ function MainNav() {
                     title="Submit"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
-                    <NavDropdown.Item onClick={() => {setRestaurantPopup(true)}}>Submit Restaurant</NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => {
+                      //dispatch(trueRestaurantPopup())
+                      }}>Submit Restaurant</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action4">
                     Submit Bar
