@@ -6,16 +6,19 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
-
 import MainNav from './components/mainNav/MainNav';
 import RestaurantPage from'./components/RestaurantPage/RestaurantPage';
 import {allBars} from './services/tableDataService';
 import './App.scss';
 
 
+
+
+
+
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2" color="text.light" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
         Your Website
@@ -28,7 +31,7 @@ function Copyright(props) {
 
 const footers = [
   {
-    title: 'Company',
+    title: 'Restaurants',
     description: ['Team', 'History', 'Contact us', 'Locations'],
   },
   {
@@ -60,6 +63,8 @@ const defaultTheme = createTheme({
 });
 
 function App() {
+
+
 
   useEffect(() => {
     allBars().then(data => {

@@ -7,22 +7,37 @@ import Leaders from '../Leaders/Leaders';
 import RestaurantList from '../RestaurantList/RestaurantList';
 import RestaurantTable from '../InformationTable/InformationTable';
 import {allRestaurants, addRestaurant} from '../../services/tableDataService';
+import { useSelector, useDispatch } from 'react-redux';
 import 'reactjs-popup/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
 function Hero() {
+    const {
+        id,
+        name,
+        type,
+        price,
+        description,
+        latitude,
+        longitude
+     } = useSelector((state) => state.restaurant);
+
+     const {restaurantList} = useSelector((state) => state.dataLists)
+
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        allRestaurants().then(data => {
-          setRestaurantData(data)
-        })
-       }, []);
+        dispatch(allRestaurants())
+       }, [dispatch]);
 
     const[restaurantPopup, setRestaurantPopup] = useState(false)
     const[restaurantInput, setRestaurantInput] = useState()
     const[restaurantData, setRestaurantData] = useState();
 
     return <>
+    {console.log("redux", restaurantList)}
+        
         {restaurantPopup ? 
          <Popup 
             open={restaurantPopup} 
@@ -121,12 +136,12 @@ function Hero() {
                         <Button variant="outline-primary" onClick={() => {setRestaurantPopup(true)}}>Submit a New Restaurant</Button>
                 </div>
                 <div className="row mt-5 overflow-hidden">
-                    <Leaders restaurants={restaurantData}/>
+                    <Leaders restaurants={restaurantList}/>
                 </div>
             </Container>
         </div>
-        <RestaurantList items={restaurantData?.slice(2, 8)}/>
-        <RestaurantTable rows={["Name", "Item", "Price"]} data={restaurantData?.slice(8, restaurantData.length)}/>
+        <RestaurantList items={restaurantList?.slice(2, 8)}/>
+        <RestaurantTable rows={["Name", "Item", "Price"]} data={restaurantList?.slice(8, restaurantList.length)}/>
   </>
 }
 

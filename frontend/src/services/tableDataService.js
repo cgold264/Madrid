@@ -3,6 +3,9 @@ fetchBars,
 fetchRestaurants,
 addNewRestaurant
 } from './service';
+import store from '../store'; // Import your Redux store
+import { addAllRestaurants } from '../actions/restaurantActions';
+
 
 export async function allBars(){
     try{
@@ -14,15 +17,15 @@ export async function allBars(){
     }
 }
 
-export async function allRestaurants(){
-    try{
-        const data = await fetchRestaurants();
-        console.log("table service", data)
-        return data;
+export const allRestaurants = () => async (dispatch) => {
+    try {
+      const data = await fetchRestaurants();
+      console.log("table service", data);
+      dispatch(addAllRestaurants(data));
     } catch (error) {
-        console.error('Error:', error);
+      console.error('Error:', error);
     }
-}
+  };
 
 export async function addRestaurant(payload){
     try{
