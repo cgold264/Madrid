@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
+import ItemPopup from '../itemPopup/ItemPopup';
+
 import imageUrl from './plaza_mayor.jpg'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -18,8 +19,12 @@ function RestaurantList(props) {
   useEffect(() => {
     AOS.init();
   }, []);
+  const[itemOpen, setItemOpen] = useState({open: false, data: {}})
 
     return <section id="restaurantList">
+          {itemOpen.open ? 
+        <ItemPopup item={itemOpen.data} onClose={() => {setItemOpen(false)}}/>
+      : null}
       <div data-aos="fade-up" className="bg-dark">
                 <Container
             maxWidth="md"
@@ -29,7 +34,8 @@ function RestaurantList(props) {
             }}
         > 
         <Grid container spacing={4}>
-            {props.items?.map((card) => (
+            {props.items?.map((card) => (<>
+
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
@@ -41,7 +47,7 @@ function RestaurantList(props) {
                       pt: '56.25%',
                     }}
                     image={card.latitude ? 
-                          `https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels/${card.latitude},${card.longitude}/15?mapSize=400,200&pp=${card.latitude},${card.longitude};;${card.name}&key=${BingMapsKey}` 
+                          `https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels/${card.latitude},${card.longitude}/15?mapSize=400,200&pp=${card.latitude},${card.longitude};;&key=${BingMapsKey}` 
                           : imageUrl}
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
@@ -56,11 +62,18 @@ function RestaurantList(props) {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">View</Button>
+                    <button className="btn btn-outline-primary btn-small"
+                    onClick={() => {
+                      setItemOpen({open: true, data: card})
+                    }}>
+                      View
+                    </button>
+                    
                     {/* <Button size="small">Edit</Button> */}
                   </CardActions>
                 </Card>
               </Grid>
+              </>
             ))}
           </Grid>
         </Container>

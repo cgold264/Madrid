@@ -5,19 +5,22 @@ import {addSingleRestaurant, falseRestaurantPopup} from '../../actions/restauran
 import {addRestaurant} from '../../services/tableDataService';
 
 export default function RestaurantPopup(){
+
     const {userLatitude, userLongitude} = useSelector((state) => state.user)
     const {inputRestaurant} = useSelector((state) => state.popups)
 
-    const[restaurantInput, setRestaurantInput] = useState()
+    const[restaurantInput, setRestaurantInput] = useState({latitude: userLatitude, longitude: userLongitude})
+    const[inputError, setInputError] = useState(true)
     const dispatch = useDispatch();
     console.log(inputRestaurant)
 
     return <Popup 
             open={inputRestaurant} 
             position="center" 
-            onClose={() => {dispatch(falseRestaurantPopup)}}>
+            onClose={() => dispatch(falseRestaurantPopup())}
+            >
          <div className="px-3">
-             <button className="close" onClick={() => {dispatch(falseRestaurantPopup)}}>&times;</button>
+             <button className="close" onClick={() => {dispatch(falseRestaurantPopup())}}>&times;</button>
              <h3 className="text-center">Submit a New Restaurant</h3>
              <form>
                 <label for="restaurantNameInput" className="text-right">Restaurant Name</label>
@@ -28,6 +31,7 @@ export default function RestaurantPopup(){
                         id="restaurantNameInput" 
                         placeholder="Name" 
                         onChange={(input) => {
+                            setInputError(false)
                             setRestaurantInput({...restaurantInput, name: input.target.value})
                         }}
                         required></input>
@@ -75,13 +79,14 @@ export default function RestaurantPopup(){
                     className="btn btn-primary" 
                     type="submit"
                     onClick={() => {
-                            dispatch(falseRestaurantPopup());
-                            setRestaurantInput({...restaurantInput, latitude: userLatitude, longitude: userLongitude})
-                            addRestaurant(restaurantInput); 
-                            dispatch(addSingleRestaurant(restaurantInput));
+                            if(!inputError){
+                                addRestaurant(restaurantInput); 
+                                dispatch(addSingleRestaurant(restaurantInput));
+                                dispatch(falseRestaurantPopup());
+                            }
                         }}>Save</button>
                 </div>
             </form>
          </div>
-         </Popup> 
+        </Popup> 
 }

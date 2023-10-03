@@ -22,12 +22,9 @@ function MainNav() {
 
   return (
     <>
-      {inputRestaurant ?
-      <RestaurantPopup />
-      :null}
-        <Navbar key={expand} expand={expand} data-bs-theme="dark" className="bg-body-tertiary p-3">
+        <Navbar key={expand} expand={expand} data-bs-theme="dark" className="bg-body-tertiary p-3 fixed-top">
           <Container fluid>
-            <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
+            <Navbar.Brand href="#">Travel Madrid</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -36,7 +33,7 @@ function MainNav() {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  Offcanvas
+                  Travel Madrid 
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
@@ -49,7 +46,7 @@ function MainNav() {
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
                     <NavDropdown.Item onClick={() => {
-                      //dispatch(trueRestaurantPopup())
+                      dispatch(trueRestaurantPopup())
                       }}>Submit Restaurant</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action4">

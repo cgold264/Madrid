@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import Container from '@mui/material/Container';
 import StarIcon from '@mui/icons-material/StarBorder';
 import Grid from '@mui/material/Grid';
+import ItemPopup from '../itemPopup/ItemPopup';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -18,7 +19,13 @@ function Leaders(props) {
   useEffect(() => {
     AOS.init();
   }, []);
+
+  const[itemOpen, setItemOpen] = useState({open: false})
+
     return <section id="Leaders">
+      {itemOpen.open ? 
+        <ItemPopup item={itemOpen.data} onClose={() => {setItemOpen(false)}}/>
+      : null}
       <div data-aos="fade-up">
             <Grid container spacing={5} alignItems="flex-end">
               {tiers?.map((tier) => (
@@ -31,18 +38,23 @@ function Leaders(props) {
                     md={4}
                   >
                   <Card>
-                      <CardHeader
-                        title={tier.name}
-                        subheader={tier.place === 'first' ? 'Current Winner' : null}
-                        titleTypographyProps={{ align: 'center' }}
-                        action={tier.place === 'first' ? <StarIcon /> : null}
-                        subheaderTypographyProps={{
-                          align: 'center',
-                        }}
-                        sx={{
-                          backgroundColor: "#bababa"
-                        }}
-                      />
+                      {tier.place === 'first' ? <div className="row bg-warning text-end p-2">
+                      
+                          <div className="col-2">
+                            <StarIcon /> 
+                          </div>
+                      </div>
+                      : null}
+                      <div className="row m-0">
+                        <div className="col-12 text-center">
+                          <h1>{tier.name}</h1>
+                        </div>
+                      </div>
+                      {tier.place === 'first' ? 
+                        <div className="row text-center m-0 p-0 border-dark">
+                        <h5 className="text-warning"><i>Current Winner </i></h5>
+                      </div> : null}
+                      
                       <CardContent
                       sx={{
                         backgroundColor: "transparent"
@@ -76,9 +88,13 @@ function Leaders(props) {
                         </ul>
                       </CardContent>
                       <CardActions>
-                        <Button variant={tier.place !== 'first' ?'outline-primary' : 'primary'} className="w-100">
+                        <button 
+                          className={`btn w-100 btn-${tier.place !== 'first' ?'outline-secondary' : 'warning'}`}
+                          onClick={() => {
+                            setItemOpen({open: true, data: tier})
+                          }}>
                           {"info"}
-                        </Button>
+                        </button>
                       </CardActions>
                     </Card>
                   </Grid>

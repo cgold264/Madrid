@@ -38,9 +38,10 @@ export function addNewRestaurant(payload) {
     return fetch(apiUrl + '/restaurants/add', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded', // Set the appropriate content type
+            'Content-Type': 'application/json', // Set the appropriate content type
         },
-        body: new URLSearchParams(payload).toString(), // Convert the payload to a URL-encoded string
+        
+        body: JSON.stringify(payload), // Convert the payload to a URL-encoded string
     })
         .then(response => {
             if (!response.ok) {

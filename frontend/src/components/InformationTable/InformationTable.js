@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
+import ItemPopup from '../itemPopup/ItemPopup';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,14 +20,13 @@ export default function InformationTable(props) {
     AOS.init();
   }, []);
 
+  const[itemOpen, setItemOpen] = useState(false)
+
   return (
     <section id="RestaurantTable" className='bg-dark'>
         <div data-aos="fade-up">
         <Container maxWidth="md" component="main"
           sx={{
-            borderTop: `1px solid `,
-            borderColor: 'text.primary',
-            py: [0, 8],
           }}
          >
           <TableContainer component={Paper}>
@@ -39,17 +39,21 @@ export default function InformationTable(props) {
               </TableRow>
               </TableHead>
               <TableBody>
-              {props.data?.map((row) => (
+              {props.data?.map((row) => (<>
+                {itemOpen ? 
+                  <ItemPopup item={row} onClose={() => {setItemOpen(false)}}/>
+                : null}
                   <TableRow
                   key={row?.name}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                   <TableCell align="center">
-                      {row?.name}
+                    <button type="button" class="btn btn-outline-secondary" onClick={() => setItemOpen(true)}>{row?.name}</button>
                   </TableCell>
                   <TableCell align="center">{row?.item}</TableCell>
                   <TableCell align="center">{row?.price}</TableCell>
                   </TableRow>
+              </>
               ))}
 
               </TableBody>
