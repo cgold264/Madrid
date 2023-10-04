@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Leaders from '../Leaders/Leaders';
 import RestaurantList from '../RestaurantList/RestaurantList';
 import RestaurantTable from '../InformationTable/InformationTable';
-import {allRestaurants, addRestaurant} from '../../services/tableDataService';
+import {allRestaurants} from '../../services/tableDataService';
 import { useSelector, useDispatch } from 'react-redux';
 import {trueRestaurantPopup} from '../../actions/restaurantActions';
 import 'reactjs-popup/dist/index.css';
@@ -25,7 +25,6 @@ function Hero() {
        }, [dispatch]);
 
     return <>
-        
         {inputRestaurant ? 
             <RestaurantPopup />
          : null}
@@ -45,7 +44,9 @@ function Hero() {
                 <div className="text-center mb-5">
                         <Button variant="outline-primary" onClick={() => {
                             dispatch(trueRestaurantPopup())
-                            }}>Submit a New Restaurant</Button>
+                            }}>
+                                Submit a New Restaurant
+                        </Button>
                 </div>
                 <div className="row mt-5 overflow-hidden">
                     <Leaders restaurants={restaurantList}/>

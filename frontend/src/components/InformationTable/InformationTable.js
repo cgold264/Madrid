@@ -13,17 +13,18 @@ import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-
-
 export default function InformationTable(props) {
   useEffect(() => {
     AOS.init();
   }, []);
 
-  const[itemOpen, setItemOpen] = useState(false)
+  const[itemOpen, setItemOpen] = useState({open: false})
 
   return (
     <section id="RestaurantTable" className='bg-dark'>
+      {itemOpen.open ? 
+          <ItemPopup item={itemOpen.item} onClose={() => {setItemOpen(false)}}/>
+        : null}
         <div data-aos="fade-up">
         <Container maxWidth="md" component="main"
           sx={{
@@ -40,15 +41,13 @@ export default function InformationTable(props) {
               </TableHead>
               <TableBody>
               {props.data?.map((row) => (<>
-                {itemOpen ? 
-                  <ItemPopup item={row} onClose={() => {setItemOpen(false)}}/>
-                : null}
+
                   <TableRow
                   key={row?.name}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                   <TableCell align="center">
-                    <button type="button" class="btn btn-outline-secondary" onClick={() => setItemOpen(true)}>{row?.name}</button>
+                    <button type="button" class="btn btn-outline-secondary" onClick={() => setItemOpen({open:true, item: row})}>{row?.name}</button>
                   </TableCell>
                   <TableCell align="center">{row?.item}</TableCell>
                   <TableCell align="center">{row?.price}</TableCell>
