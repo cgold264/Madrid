@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Popup from 'reactjs-popup';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ReactBingmaps } from 'react-bingmaps';
 
 function degrees_to_radians(degrees)
@@ -29,9 +29,10 @@ export default function RestaurantPopup({item, onClose}){
     
     const {userLatitude, userLongitude} = useSelector((state) => state.user)
 
-    var mapLocationUrl = `maps.apple.com/?ll=${item.latitude},${item.longitude}`;
-    var ref = window.open(encodeURI(mapLocationUrl), '_system', 'location=no');
+    var appleMapsUrl = `https://maps.apple.com/?daddr=${item.latitude},${item.longitude}`;
 
+
+// Check if link can be opened with Google Maps.
 
     return <div style={{width: "100%"}}>
       <Popup 
@@ -51,7 +52,11 @@ export default function RestaurantPopup({item, onClose}){
                       pushPins = {
                         [
                           {
-                            "location":[item?.latitude, item?.longitude], "option":{ color: 'red' }, "addHandler": {"type" : "click", callback: () => {ref} }
+                            "location":[item?.latitude, item?.longitude], 
+                            "option":{ color: 'red' }, 
+                            "addHandler": {
+                              "type" : "click", 
+                              callback: () => { window.open(appleMapsUrl)}}
                           },
                           {
                             "location":[userLatitude, userLongitude], "option":{ color: 'blue' }, "addHandler": {"type" : "click", callback: () => {console.log("click")} }

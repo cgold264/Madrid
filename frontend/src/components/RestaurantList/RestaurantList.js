@@ -62,7 +62,7 @@ function RestaurantList(props) {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <button className="btn btn-outline-primary btn-small"
+                    <button className="btn btn-outline-secondary btn-small"
                     onClick={() => {
                       setItemOpen({open: true, data: card})
                     }}>

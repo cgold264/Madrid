@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Container from '@mui/material/Container';
 import 'bootstrap/dist/css/bootstrap.css';
 import Button from 'react-bootstrap/Button';
@@ -11,6 +11,7 @@ import {trueRestaurantPopup} from '../../actions/restaurantActions';
 import 'reactjs-popup/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import RestaurantPopup from '../RestaurantPopup/RestaurantPopup';
+import { TypeAnimation } from 'react-type-animation';
 
 
 function Hero() {
@@ -30,19 +31,34 @@ function Hero() {
          : null}
         <div className="background p-4 bg-dark">
             <Container disableGutters maxWidth="lg" component="main" sx={{ pt: 8, pb: 6 }}>
-                <div className='text-light text-center'>
-                    <h1>
-                        Pricing
-                    </h1>
-                </div>
-                <div className='text-light text-center font-weight-lighter'>
-                    <h5>
-                        Navigate the streets of madrid without the burden of finding the best and cheapest 
-                        eats in the city.
-                    </h5>
+                <div className="m-4">
+                    <div className='text-light text-center'>
+                    <TypeAnimation
+                        sequence={[
+                            // Same substring at the start will only be typed out once, initially
+                            'Great Food, Low Cost',
+                            3000, // wait 1s before replacing "Mice" with "Hamsters"
+                            "Madrid's Best Deals",
+                            3000,
+                            'Fine Dining, Low Prices',
+                            3000,
+                            'We produce food for Chinchillas',
+                            3000
+                        ]}
+                        wrapper="span"
+                        speed={20}
+                        style={{ fontSize: '2em', display: 'inline-block' }}
+                        repeat={Infinity}
+                        />
+                    </div>
+                    <div className='text-secondary text-center font-weight-lighter'>
+                        <h5>
+                        Discover Madrid's Hidden Gems: Your Guide to the Most Affordable Restaurants in the City.
+                        </h5>
+                    </div>
                 </div>
                 <div className="text-center mb-5">
-                        <Button variant="outline-primary" onClick={() => {
+                        <Button variant="outline-warning" onClick={() => {
                             dispatch(trueRestaurantPopup())
                             }}>
                                 Submit a New Restaurant

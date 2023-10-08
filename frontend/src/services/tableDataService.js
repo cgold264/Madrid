@@ -3,8 +3,6 @@ fetchBars,
 fetchRestaurants,
 addNewRestaurant
 } from './service';
-import store from '../store'; // Import your Redux store
-import { useSelector } from 'react-redux';
 import { addAllRestaurants } from '../actions/restaurantActions';
 
 

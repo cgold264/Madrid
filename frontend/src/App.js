@@ -5,9 +5,8 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import MainNav from './components/mainNav/MainNav';
 import RestaurantPage from'./components/RestaurantPage/RestaurantPage';
 import Footer from './components/footer/Footer';
-import ItemPopup from './components/itemPopup/ItemPopup';
 import {addUserLocation} from './actions/userActions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {allBars} from './services/tableDataService';
 import './App.scss';
 
@@ -25,7 +24,6 @@ const defaultTheme = createTheme({
 
 function App() {
   const dispatch = useDispatch();
-  const {itemPopup} = useSelector((state) => state.popups)
 
   useEffect(() => {
     allBars().then(data => {

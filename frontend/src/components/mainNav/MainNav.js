@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -6,10 +6,9 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { useSelector, useDispatch } from 'react-redux';
+import {useDispatch} from 'react-redux';
 import 'reactjs-popup/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import RestaurantPopup from '../RestaurantPopup/RestaurantPopup';
 import { trueRestaurantPopup } from '../../actions/restaurantActions';
 
 
@@ -18,7 +17,6 @@ const expand = 'lg';
 
 function MainNav() {
   const dispatch = useDispatch()
-  const {inputRestaurant} = useSelector((state) => state.popups)
 
   return (
     <>
@@ -65,7 +63,7 @@ function MainNav() {
                     className="me-2"
                     aria-label="Search"
                   />
-                  <Button variant="outline-primary">Search</Button>
+                  <Button variant="outline-warning">Search</Button>
                 </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
