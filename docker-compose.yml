@@ -10,6 +10,7 @@ services:
       - ./mysql/mysql-env.txt
     volumes:
       - ./mysql/scripts:/docker-entrypoint-initdb.d
+      - /opt/mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
 

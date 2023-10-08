@@ -42,8 +42,6 @@ function Hero() {
                             3000,
                             'Fine Dining, Low Prices',
                             3000,
-                            'We produce food for Chinchillas',
-                            3000
                         ]}
                         wrapper="span"
                         speed={20}
@@ -51,7 +49,7 @@ function Hero() {
                         repeat={Infinity}
                         />
                     </div>
-                    <div className='text-secondary text-center font-weight-lighter'>
+                    <div className='text-light text-center font-weight-lighter'>
                         <h5>
                         Discover Madrid's Hidden Gems: Your Guide to the Most Affordable Restaurants in the City.
                         </h5>
