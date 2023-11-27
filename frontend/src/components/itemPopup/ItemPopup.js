@@ -70,7 +70,7 @@ export default function RestaurantPopup({item, onClose}){
               </div>
              </div>
              <div className="row">
-                <h5 className="text-secondary text-center">{`${calcDistanceInKM(item?.latitude, item?.longitude, userLatitude, userLongitude).toFixed(2)} KM from your location`}</h5>
+                <h5 className="text-secondary text-center">{`${calcDistanceInKM(item?.latitude, item?.longitude, userLatitude, userLongitude)} KM from your location`}</h5>
              </div>
          </div>
         </Popup> 
