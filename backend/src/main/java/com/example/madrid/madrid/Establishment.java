@@ -2,6 +2,7 @@ package com.example.madrid.madrid;
 
 import java.math.BigDecimal;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -10,12 +11,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 
 @Entity
 public class Establishment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
     private String name;
     private String description;
@@ -23,7 +26,8 @@ public class Establishment {
     private BigDecimal longitude;
     private String website;
     private String telephone;
-    @OneToMany(targetEntity=User.class, mappedBy="userName", fetch=FetchType.EAGER)
+    @OneToOne
+    @JoinColumn(name = "userName", referencedColumnName = "userName")
     private User submitter;
 
     // Getters and setters

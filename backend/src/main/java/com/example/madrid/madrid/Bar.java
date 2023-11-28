@@ -9,7 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -20,7 +20,8 @@ public class Bar {
     private String drink;
     private String price;
     private Long litRating;
-    @OneToMany(targetEntity=Establishment.class, mappedBy="id", fetch=FetchType.EAGER)
+    @OneToOne
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private Establishment establishment;
 
     // Getters and setters

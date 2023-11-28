@@ -1,12 +1,11 @@
 package com.example.madrid.madrid;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Restaurant {
@@ -15,7 +14,8 @@ public class Restaurant {
     private Long id;
     private String item;
     private Double price;
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private Establishment establishment;
 
 

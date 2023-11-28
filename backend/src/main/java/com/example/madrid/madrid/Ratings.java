@@ -6,7 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 
 @Entity
@@ -14,8 +15,11 @@ public class Ratings {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rating;
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "userName", referencedColumnName = "userName")
     private User submitter;
+    @OneToOne
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private Establishment establishment;
 
     // Getters and setters
