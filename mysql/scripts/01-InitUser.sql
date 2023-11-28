@@ -5,5 +5,5 @@ CREATE TABLE IF NOT EXISTS user(
     password NVARCHAR(255) NOT NULL
 );
 
-INSERT INTO USER(userName, password) VALUES 
+INSERT INTO user(userName, password) VALUES 
 ('default', 'default');
