@@ -69,3 +69,19 @@ export function addNewRestaurant(payload) {
             console.error('Error fetching data:', error);
         });
 }
+
+export function fetchUsers() {
+    return fetch(apiUrl + "/users/all")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            return data
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+}

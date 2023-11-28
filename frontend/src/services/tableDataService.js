@@ -5,6 +5,7 @@ addNewRestaurant,
 fetchEstablishment
 } from './service';
 import { addAllRestaurants } from '../actions/restaurantActions';
+import { addAllEstablishments } from '../actions/establishmentActions';
 
 
 export async function allBars(){
@@ -21,7 +22,7 @@ export const allEstablishments = () => async (dispatch) => {
     try {
       const data = await fetchEstablishment();
       console.log("table service", data);
-      dispatch(addAllRestaurants(data));
+      dispatch(addAllEstablishments(data));
     } catch (error) {
       console.error('Error:', error);
     }

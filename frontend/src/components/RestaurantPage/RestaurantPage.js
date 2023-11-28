@@ -6,6 +6,7 @@ import Leaders from '../Leaders/Leaders';
 import RestaurantList from '../RestaurantList/RestaurantList';
 import RestaurantTable from '../InformationTable/InformationTable';
 import {allEstablishments, allRestaurants} from '../../services/tableDataService';
+import {allUsers} from '../../services/loginService';
 import { useSelector, useDispatch } from 'react-redux';
 import {trueRestaurantPopup} from '../../actions/restaurantActions';
 import 'reactjs-popup/dist/index.css';
@@ -17,11 +18,16 @@ import { TypeAnimation } from 'react-type-animation';
 function Hero() {
 
      const {restaurantList} = useSelector((state) => state.dataLists)
+     const {establishmentList} = useSelector((state) => state.dataLists)
      const {inputRestaurant} = useSelector((state) => state.popups)
 
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(allUsers())
+       }, [dispatch]);
+
+       useEffect(() => {
         dispatch(allEstablishments())
        }, [dispatch]);
 
