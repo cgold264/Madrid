@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS establishment(
     website NVARCHAR(255),
     telephone VARCHAR(10),
     submitter NVARCHAR(255),
-    FOREIGN KEY(submitter) REFERENCES user(userName)
+    FOREIGN KEY(submitter) REFERENCES user(user_name)
 );
 
 
