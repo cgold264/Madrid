@@ -6,18 +6,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
     private String item;
     private Double price;
-    private String description;
-    private BigDecimal latitude;
-    private BigDecimal longitude;
+    @ManyToOne
+    private Establishment establishment;
+
 
     // Getters and setters
     
@@ -29,12 +29,12 @@ public class Restaurant {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Establishment getEstablishment() {
+        return establishment;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEstablishment(Establishment establishment) {
+        this.establishment = establishment;
     }
 
     public String getItem() {
@@ -51,30 +51,6 @@ public class Restaurant {
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public BigDecimal getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(BigDecimal latitude) {
-        this.latitude = latitude;
-    }
-
-    public BigDecimal getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(BigDecimal longitude) {
-        this.longitude = longitude;
     }
 }
 

@@ -3,9 +3,14 @@ package com.example.madrid.madrid;
 import java.math.BigDecimal;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
 
 @Entity
 public class Establishment {
@@ -13,11 +18,12 @@ public class Establishment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String item;
-    private Double price;
     private String description;
     private BigDecimal latitude;
     private BigDecimal longitude;
+    private String website;
+    private String telephone;
+    @OneToMany(targetEntity=User.class, mappedBy="userName", fetch=FetchType.EAGER)
     private User submitter;
 
     // Getters and setters
@@ -36,22 +42,6 @@ public class Establishment {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getItem() {
-        return item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     public String getDescription() {
@@ -76,6 +66,22 @@ public class Establishment {
 
     public void setLongitude(BigDecimal longitude) {
         this.longitude = longitude;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public User getSubmitter() {
