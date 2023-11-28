@@ -18,6 +18,22 @@ export function fetchBars() {
         });
 }
 
+export function fetchEstablishment() {
+    return fetch(apiUrl + "/establishment/all")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            return data
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+}
+
 export function fetchRestaurants() {
     return fetch(apiUrl + "/restaurants/all")
         .then(response => {

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Leaders from '../Leaders/Leaders';
 import RestaurantList from '../RestaurantList/RestaurantList';
 import RestaurantTable from '../InformationTable/InformationTable';
-import {allRestaurants} from '../../services/tableDataService';
+import {allEstablishments, allRestaurants} from '../../services/tableDataService';
 import { useSelector, useDispatch } from 'react-redux';
 import {trueRestaurantPopup} from '../../actions/restaurantActions';
 import 'reactjs-popup/dist/index.css';
@@ -22,7 +22,7 @@ function Hero() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(allRestaurants())
+        dispatch(allEstablishments())
        }, [dispatch]);
 
     return <>
