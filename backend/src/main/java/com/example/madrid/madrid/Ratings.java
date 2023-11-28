@@ -16,7 +16,7 @@ public class Ratings {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rating;
     @OneToOne
-    @JoinColumn(name = "userName", referencedColumnName = "userName")
+    @JoinColumn(name = "user_name", referencedColumnName = "user_name")
     private User submitter;
     @OneToOne
     @JoinColumn(name = "id", referencedColumnName = "id")

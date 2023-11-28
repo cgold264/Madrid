@@ -31,7 +31,7 @@ public class RatingsController {
     // @RequestParam means it is a parameter from the GET or POST request
 
     Establishment n = new Establishment();
-    User submitter = userRepository.findByUsername(userName);
+    User submitter = new User();
     n.setName(name);
     n.setDescription(description);
     n.setLatitude(latitude);

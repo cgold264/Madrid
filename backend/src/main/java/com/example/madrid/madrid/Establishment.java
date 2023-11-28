@@ -27,7 +27,7 @@ public class Establishment {
     private String website;
     private String telephone;
     @OneToOne
-    @JoinColumn(name = "userName", referencedColumnName = "userName")
+    @JoinColumn(name = "submitter", referencedColumnName = "user_name")
     private User submitter;
 
     // Getters and setters

@@ -36,10 +36,10 @@ public class UserController {
     return userRepository.findAll();
   }
 
-  @PostMapping(path="/findUser") // Map ONLY POST Requests
-  public @ResponseBody User  getUsersByUserName (@RequestParam String userName) {
-    return userRepository.findByUsername(userName);
-  }
+  // @PostMapping(path="/findUser") // Map ONLY POST Requests
+  // public @ResponseBody User  getUsersByUserName (@RequestParam String userName) {
+  //   return userRepository.findByUsername(userName);
+  // }
 }
 
 

@@ -4,6 +4,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Column;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class Bar {
     private Long id;
     private String drink;
     private String price;
+    @Column(name="lit_rating")
     private Long litRating;
     @OneToOne
     @JoinColumn(name = "id", referencedColumnName = "id")
