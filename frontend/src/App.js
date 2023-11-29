@@ -4,9 +4,11 @@ import CssBaseline from '@mui/material/CssBaseline';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import MainNav from './components/mainNav/MainNav';
 import RestaurantPage from'./components/RestaurantPage/RestaurantPage';
+import RestaurantPopup from'./components/RestaurantPopup/RestaurantPopup';
+import LoginPopup from'./components/LoginPopup/LoginPopup';
 import Footer from './components/footer/Footer';
 import {addUserLocation} from './actions/userActions';
-import { useDispatch } from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
 import {allBars} from './services/tableDataService';
 import './App.scss';
 
@@ -24,6 +26,8 @@ const defaultTheme = createTheme({
 
 function App() {
   const dispatch = useDispatch();
+  const {inputRestaurant} = useSelector((state) => state.popups)
+  const {loginPopup} = useSelector((state) => state.popups)
 
   useEffect(() => {
     allBars().then(data => {
@@ -47,6 +51,12 @@ function App() {
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
+      {inputRestaurant ? 
+          <RestaurantPopup />
+      : null}
+      {loginPopup ? 
+          <LoginPopup />
+      : null}
       <MainNav />
       {/* Restaurant Page */}
       

@@ -35,7 +35,6 @@ function RestaurantList(props) {
         > 
         <Grid container spacing={4}>
             {props.items?.map((card) => (<>
-
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
@@ -44,21 +43,21 @@ function RestaurantList(props) {
                     component="div"
                     sx={{
                       // 16:9
-                      pt: '56.25%',
+                      pt: '56.25%', 
                     }}
-                    image={card.latitude ? 
-                          `https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels/${card.latitude},${card.longitude}/15?mapSize=400,200&pp=${card.latitude},${card.longitude};;&key=${BingMapsKey}` 
+                    image={card.establishment.latitude ? 
+                          `https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels/${card.establishment.latitude},${card.establishment.longitude}/15?mapSize=400,200&pp=${card.establishment.latitude},${card.establishment.longitude};;&key=${BingMapsKey}` 
                           : imageUrl}
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h4" component="h2">
-                      {card.name}
+                      {card.establishment.name}
                     </Typography>
                     <Typography gutterBottom variant="h6" component="h2">
                       ${card.price}
                     </Typography>
                     <Typography>
-                      {card.description}
+                      {card.establishment.description}
                     </Typography>
                   </CardContent>
                   <CardActions>

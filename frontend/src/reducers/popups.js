@@ -2,10 +2,15 @@
 const initialState = {
     inputRestaurant: false,
     itemPopup: false,
+    loginPopup: false
   };
   
   const popupsReducer = (state = initialState, action) => {
     switch (action.type) {
+      case 'FALSE_LOGIN_POPUP':
+        return { ...state, loginPopup: false};
+      case 'TRUE_LOGIN_POPUP':
+        return { ...state, loginPopup: true};
       case 'FALSE_INPUT_RESTAURANT':
         return { ...state, inputRestaurant: false};
       case 'TRUE_INPUT_RESTAURANT':

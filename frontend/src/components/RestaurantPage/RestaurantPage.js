@@ -12,6 +12,7 @@ import {trueRestaurantPopup} from '../../actions/restaurantActions';
 import 'reactjs-popup/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import RestaurantPopup from '../RestaurantPopup/RestaurantPopup';
+import LoginPopup from '../LoginPopup/LoginPopup';
 import { TypeAnimation } from 'react-type-animation';
 
 
@@ -36,9 +37,6 @@ function Hero() {
        }, [dispatch]);
 
     return <>
-        {inputRestaurant ? 
-            <RestaurantPopup />
-         : null}
         <div className="background p-4 bg-dark">
             <Container disableGutters maxWidth="lg" component="main" sx={{ pt: 8, pb: 6 }}>
                 <div className="m-4">
@@ -58,12 +56,12 @@ function Hero() {
                         style={{ fontSize: '2em', display: 'inline-block' }}
                         repeat={Infinity}
                         />
+                        <h1 className="text-white"><b>Top Picks</b></h1>
                     </div>
-                    <div className='text-light text-center font-weight-lighter'>
-                        <h5>
-                        Discover Madrid's Hidden Gems: Your Guide to the Most Affordable Restaurants in the City.
-                        </h5>
-                    </div>
+                </div>
+               
+                <div className="row mt-5 overflow-hidden">
+                    <Leaders restaurants={restaurantList}/>
                 </div>
                 <div className="text-center mb-5">
                         <Button variant="outline-warning" onClick={() => {
@@ -72,13 +70,9 @@ function Hero() {
                                 Submit a New Restaurant
                         </Button>
                 </div>
-                <div className="row mt-5 overflow-hidden">
-                    <Leaders restaurants={restaurantList}/>
-                </div>
             </Container>
         </div>
-        <RestaurantList items={restaurantList?.slice(2, 8)}/>
-        {console.log(restaurantList)}
+        <RestaurantList items={restaurantList}/>
         <RestaurantTable rows={["Name", "Item", "Submitter"]} data={restaurantList}/>
   </>
 }

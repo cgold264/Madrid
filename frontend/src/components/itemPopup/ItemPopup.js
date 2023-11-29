@@ -29,12 +29,12 @@ export default function RestaurantPopup({item, onClose}){
     
     const {userLatitude, userLongitude} = useSelector((state) => state.user)
 
-    var appleMapsUrl = `https://maps.apple.com/?daddr=${item.latitude},${item.longitude}`;
+    var appleMapsUrl = `https://maps.apple.com/?daddr=${item.establishment.latitude},${item.establishment.longitude}`;
 
 
 // Check if link can be opened with Google Maps.
 
-    return <div style={{width: "100%"}}>
+    return <div style={{width: "100%", maxHeight: "75%"}}>
       <Popup 
             open={true} 
             position="center" 
@@ -44,35 +44,46 @@ export default function RestaurantPopup({item, onClose}){
              <button className="close" onClick={onClose}>&times;</button>
              <h3 className="text-center">{item?.name}</h3>
              <div className="row text-center">
-              <div className="map-one">
-                  <ReactBingmaps 
-                    id = "one"
-                    bingmapKey = {BingMapsKey} 
-                    center = {[item?.latitude, item?.longitude]}
-                      pushPins = {
-                        [
-                          {
-                            "location":[item?.latitude, item?.longitude], 
-                            "option":{ color: 'red' }, 
-                            "addHandler": {
-                              "type" : "click", 
-                              callback: () => { window.open(appleMapsUrl)}}
-                          },
-                          {
-                            "location":[userLatitude, userLongitude], "option":{ color: 'blue' }, "addHandler": {"type" : "click", callback: () => {console.log("click")} }
-                          },
-                        ]
-                      }
-                    zoom = {18}
-                    className = "customClass"
-                  > 
-                </ReactBingmaps>
+                
+                  <div className="map-one">
+                      <ReactBingmaps 
+                        id = "one"
+                        bingmapKey = {BingMapsKey} 
+                        center = {[item?.establishment.latitude, item?.establishment.longitude]}
+                          pushPins = {
+                            [
+                              {
+                                "location":[item?.establishment.latitude, item?.establishment.longitude], 
+                                "option":{ color: 'red' }, 
+                                "addHandler": {
+                                  "type" : "click", 
+                                  callback: () => { window.open(appleMapsUrl)}}
+                              },
+                              {
+                                "location":[userLatitude, userLongitude], "option":{ color: 'blue' }, "addHandler": {"type" : "click", callback: () => {console.log("click")} }
+                              },
+                            ]
+                          }
+                        zoom = {18}
+                        className = "customClass"
+                      > 
+                    </ReactBingmaps>
               </div>
              </div>
-             <div className="row">
-                <h5 className="text-secondary text-center">{`${calcDistanceInKM(item?.latitude, item?.longitude, userLatitude, userLongitude)} KM from your location`}</h5>
+             <div className="container overflow-auto">
+                <div className="row text-center">
+                    <h1><b>{item?.establishment.name}</b></h1>
+                  </div>
+                {userLatitude ? 
+                  <div className="row">
+                    <h5 className="text-secondary text-center">{`${calcDistanceInKM(item?.establishment.latitude, item?.establishment.longitude, userLatitude, userLongitude)} KM from your location`}</h5>
+                  </div>
+                  :null
+                }
+                
+            </div>
              </div>
-         </div>
+              
         </Popup> 
         </div>
 }

@@ -3,7 +3,7 @@ USE madrid_eats_db;
 CREATE TABLE IF NOT EXISTS establishment(
     id INT AUTO_INCREMENT PRIMARY KEY,
     name NVARCHAR(255) NOT NULL,
-    description VARCHAR(255),
+    description VARCHAR(255) NOT NULL,
     latitude DECIMAL(18, 16),
     longitude DECIMAL(18, 16),
     website NVARCHAR(255),

@@ -6,9 +6,12 @@ import {
 export const allUsers = () => async (dispatch) => {
     try {
       const data = await fetchUsers();
-      console.log("table service", data);
       dispatch(setLoginUser(data));
     } catch (error) {
       console.error('Error:', error);
     }
   };
+
+export const validateLogin = (userName, Password) => {
+  console.log(userName, Password)
+}

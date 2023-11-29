@@ -6,16 +6,21 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import {useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import 'reactjs-popup/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { trueRestaurantPopup } from '../../actions/restaurantActions';
+import { trueLoginPopup } from '../../actions/userActions';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+
+
 
 
 
 const expand = 'lg';
 
 function MainNav() {
+  const {loginPopup} = useSelector((state) => state.popups)
   const dispatch = useDispatch()
 
   return (
@@ -64,6 +69,10 @@ function MainNav() {
                     aria-label="Search"
                   />
                   <Button variant="outline-warning">Search</Button>
+                  <button className="btn outline-warning" onClick={() => {
+                    dispatch(trueLoginPopup()
+                    )}}>Login</button>
+                    {console.log(loginPopup)}
                 </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
