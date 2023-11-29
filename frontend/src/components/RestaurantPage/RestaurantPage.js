@@ -78,7 +78,8 @@ function Hero() {
             </Container>
         </div>
         <RestaurantList items={restaurantList?.slice(2, 8)}/>
-        <RestaurantTable data={restaurantList?.slice(8, restaurantList.length)}/>
+        {console.log(restaurantList)}
+        <RestaurantTable rows={["Name", "Item", "Submitter"]} data={restaurantList}/>
   </>
 }
 
