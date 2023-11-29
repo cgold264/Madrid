@@ -17,7 +17,7 @@ public class Restaurant {
     private String item;
     private Double price;
     @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "establishment", referencedColumnName = "id")
     private Establishment establishment;
 
 

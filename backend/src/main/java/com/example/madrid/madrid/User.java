@@ -14,7 +14,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_name")
     private String userName;
-    @Column(name="password")
     private String password;
 
     // Getters and setters

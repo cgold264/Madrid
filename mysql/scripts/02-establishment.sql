@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS establishment(
     longitude DECIMAL(18, 16),
     website NVARCHAR(255),
     telephone VARCHAR(10),
-    submitter NVARCHAR(255),
+    submitter NVARCHAR(255) NOT NULL,
     FOREIGN KEY(submitter) REFERENCES user(user_name)
 );
 

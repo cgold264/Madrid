@@ -31,6 +31,10 @@ function Hero() {
         dispatch(allEstablishments())
        }, [dispatch]);
 
+       useEffect(() => {
+        dispatch(allRestaurants())
+       }, [dispatch]);
+
     return <>
         {inputRestaurant ? 
             <RestaurantPopup />
@@ -74,7 +78,7 @@ function Hero() {
             </Container>
         </div>
         <RestaurantList items={restaurantList?.slice(2, 8)}/>
-        <RestaurantTable rows={["Name", "Item", "Price"]} data={restaurantList?.slice(8, restaurantList.length)}/>
+        <RestaurantTable data={restaurantList?.slice(8, restaurantList.length)}/>
   </>
 }
 

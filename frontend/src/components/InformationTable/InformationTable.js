@@ -19,6 +19,7 @@ export default function InformationTable(props) {
   }, []);
 
   const[itemOpen, setItemOpen] = useState({open: false})
+  const row = ["Name", "Item", "Submitter"]
 
   return (
     <section id="RestaurantTable" className='bg-dark'>
@@ -43,14 +44,14 @@ export default function InformationTable(props) {
               {props.data?.map((row) => (<>
 
                   <TableRow
-                  key={row?.name}
+                  key={row?.establishment.name}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                   <TableCell align="center">
-                    <button type="button" class="btn btn-outline-secondary" onClick={() => setItemOpen({open:true, item: row})}>{row?.name}</button>
+                    <button type="button" class="btn btn-outline-secondary" onClick={() => setItemOpen({open:true, item: row})}>{row?.establishment.name}</button>
                   </TableCell>
-                  <TableCell align="center">{row?.item}</TableCell>
-                  <TableCell align="center">{row?.price}</TableCell>
+                  <TableCell align="center">{row?.establishment.description}</TableCell>
+                  <TableCell align="center">{row?.establishment.submitter.user_name}</TableCell>
                   </TableRow>
               </>
               ))}

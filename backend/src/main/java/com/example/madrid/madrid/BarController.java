@@ -20,7 +20,7 @@ public class BarController {
 
   @PostMapping(path="/add") // Map ONLY POST Requests
   public @ResponseBody String addNewBar (@RequestParam String establishment
-      , @RequestParam String drink, @RequestParam String price) {
+      , @RequestParam String drink, @RequestParam Double price) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
 

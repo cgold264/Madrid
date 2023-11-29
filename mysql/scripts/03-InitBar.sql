@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS bar (
     id INT AUTO_INCREMENT PRIMARY KEY,
     establishment int,
     drink VARCHAR(255) NOT NULL,
-    price VARCHAR(255) NOT NULL,
+    price FLOAT(5, 2) NOT NULL,
     lit_rating int,
     FOREIGN KEY (establishment) REFERENCES establishment(id)
 );

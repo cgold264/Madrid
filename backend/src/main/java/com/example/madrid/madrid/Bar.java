@@ -19,11 +19,11 @@ public class Bar {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String drink;
-    private String price;
+    private Double price;
     @Column(name="lit_rating")
     private Long litRating;
     @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "establishment", referencedColumnName = "id")
     private Establishment establishment;
 
     // Getters and setters
@@ -52,11 +52,11 @@ public class Bar {
         this.drink = drink;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
