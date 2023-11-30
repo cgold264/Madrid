@@ -1,5 +1,6 @@
 package com.example.madrid.madrid;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.stereotype.Controller;
@@ -30,26 +31,16 @@ public class UserController {
     }
   }
 
-  @PostMapping(path="/validUser", consumes ="application/json") 
-  public @ResponseBody String checkValidUser(@RequestBody User user) {
-    try{
-      userRepository.validateUser(user.getUserName(), user.getPassword());
-      return "Valid";
-    } catch (Exception e){
-      return "Invalid";
+@PostMapping(path = "/validUser", consumes = "application/json")
+public ResponseEntity<Void> checkValidUser(@RequestBody User user) {
+    if (userRepository.validateUser(user.getUserName(), user.getPassword())) {
+        // User is valid, return OK status
+        return ResponseEntity.ok().build();
+    } else {
+        // User not found, return 404 status
+        return ResponseEntity.notFound().build();
     }
-  }
-
-  @GetMapping(path="/all")
-  public @ResponseBody Iterable<User> getAllUsers() {
-    // This returns a JSON or XML with the users
-    return userRepository.findAll();
-  }
-
-  // @PostMapping(path="/findUser") // Map ONLY POST Requests
-  // public @ResponseBody User  getUsersByUserName (@RequestParam String userName) {
-  //   return userRepository.findByUsername(userName);
-  // }
+}
 }
 
 

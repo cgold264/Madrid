@@ -83,8 +83,8 @@ export default function LoginPopup(){
                       type="button"
                       id="signInButton"
                       className="btn btn-primary btn-block mb-4"
-                      onClick={() => {
-                        validateLogin({userName: userName, password: password});
+                      onClick={() => {                       
+                        validateLogin({user_name: userName, password: password});
                       }}
                     >
                       Sign in
