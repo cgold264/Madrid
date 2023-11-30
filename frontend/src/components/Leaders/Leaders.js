@@ -24,9 +24,12 @@ function Leaders(props) {
       : null}
       <div data-aos="fade-up">
             <Grid container spacing={5} alignItems="flex-end">
+            {console.log(tiers)}
+
               {tiers?.map((tier) => (
+
                 // Enterprise card is full width at sm breakpoint
-                  <Grid
+                <Grid
                     item
                     key={tier.name}
                     xs={12}
@@ -42,8 +45,15 @@ function Leaders(props) {
                       </div>
                       : null}
                       <div className="row m-0">
-                        <div className="col-12 text-center">
-                          <h1>{tier.name}</h1>
+                        <div className="col-12 text-center mt-2">
+                          <h1><b>{tier.establishment?.name}</b></h1>
+                        </div>
+                      </div>
+                      <div className='row m-0'>
+                      <div className="col-12 text-center mt-2">
+                          <h5 className="text-secondary">
+                            {tier.establishment?.description}
+                          </h5>
                         </div>
                       </div>
                       {tier.place === 'first' ? 
@@ -68,7 +78,7 @@ function Leaders(props) {
                             ${tier.price}
                           </Typography>
                           <Typography variant="h6" color="text.secondary">
-                            /{tier.item}
+                            /{tier.item ? tier.item : tier.drink}
                           </Typography>
                         </Box>
                         <ul>

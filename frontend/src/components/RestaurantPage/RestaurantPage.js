@@ -5,39 +5,26 @@ import Button from 'react-bootstrap/Button';
 import Leaders from '../Leaders/Leaders';
 import RestaurantList from '../RestaurantList/RestaurantList';
 import RestaurantTable from '../InformationTable/InformationTable';
-import {allEstablishments, allRestaurants} from '../../services/tableDataService';
-import {allUsers} from '../../services/loginService';
+import {allRestaurants} from '../../services/tableDataService';
 import { useSelector, useDispatch } from 'react-redux';
 import {trueRestaurantPopup} from '../../actions/restaurantActions';
 import 'reactjs-popup/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import RestaurantPopup from '../RestaurantPopup/RestaurantPopup';
-import LoginPopup from '../LoginPopup/LoginPopup';
 import { TypeAnimation } from 'react-type-animation';
 
 
-function Hero() {
+function RestaurantPage() {
 
      const {restaurantList} = useSelector((state) => state.dataLists)
-     const {establishmentList} = useSelector((state) => state.dataLists)
-     const {inputRestaurant} = useSelector((state) => state.popups)
 
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(allUsers())
-       }, [dispatch]);
-
-       useEffect(() => {
-        dispatch(allEstablishments())
-       }, [dispatch]);
 
        useEffect(() => {
         dispatch(allRestaurants())
        }, [dispatch]);
 
     return <>
-        <div className="background p-4 bg-dark">
+        <div className="restaurants-background p-4 bg-dark">
             <Container disableGutters maxWidth="lg" component="main" sx={{ pt: 8, pb: 6 }}>
                 <div className="m-4">
                     <div className='text-light text-center'>
@@ -77,4 +64,4 @@ function Hero() {
   </>
 }
 
-export default Hero;
+export default RestaurantPage;

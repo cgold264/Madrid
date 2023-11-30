@@ -49,15 +49,8 @@ export default function InformationTable(props) {
                   <TableCell align="center">
                     <button type="button" class="btn btn-outline-secondary" onClick={() => setItemOpen({open:true, item: row})}>{row?.establishment.name}</button>
                   </TableCell>
-                    {() => {
-                      switch(row){
-
-                      }
-                    }
-                    }
-                      <TableCell align="center">{row?.establishment.submitter.userName}</TableCell>
-
-                    
+                    <TableCell align="center">{row.drink ? row.drink : row.item}</TableCell>
+                    <TableCell align="center">{row?.establishment.submitter.userName}</TableCell>
                   </TableRow>
               </>
               ))}

@@ -70,6 +70,46 @@ export function addNewRestaurant(payload) {
         });
 }
 
+export function validateUserLogin(payload) {
+  return fetch(apiUrl + '/users/validUser', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json', // Set the appropriate content type
+    },
+
+    body: JSON.stringify(payload), // Convert the payload to a URL-encoded string
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+}
+
+export function addNewUser(payload) {
+  return fetch(apiUrl + '/users/add', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json', // Set the appropriate content type
+    },
+
+    body: JSON.stringify(payload), // Convert the payload to a URL-encoded string
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+}
+
 export function fetchUsers() {
     return fetch(apiUrl + "/users/all")
         .then(response => {

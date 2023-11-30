@@ -1,7 +1,8 @@
 // reducers/restaurant.js
 const initialState = {
     restaurantList: [],
-    establishmentList: []
+    establishmentList: [],
+    barsList: []
   };
   
   const dataListsReducer = (state = initialState, action) => {
@@ -12,6 +13,8 @@ const initialState = {
             return {...state, establishmentList: [...state.establishmentList, action.payload]}
         case 'ADD_RESTAURANTS':
             return {...state, restaurantList: action.payload}
+        case 'ADD_BARS':
+          return {...state, barsList: action.payload}
         case 'ADD_SINGLE_RESTAURANT':
             return {...state, restaurantList: [...state.restaurantList, action.payload]}
       default:

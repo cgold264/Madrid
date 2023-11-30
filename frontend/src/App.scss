@@ -14,8 +14,14 @@ body {
       monospace;
   }
   
-  .background {
-    background-image: url("../public/madrid_header.jpg");
+  .restaurants-background {
+    background-image: url("../public/plaza_major_background.jpg");
+    background-size: cover; 
+    min-height: 700px;
+  }
+
+  .bars-background {
+    background-image: url("../public/retiro_background.jpg");
     background-size: cover; 
     min-height: 700px;
   }

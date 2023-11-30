@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -11,8 +11,13 @@ import 'reactjs-popup/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { trueRestaurantPopup } from '../../actions/restaurantActions';
 import { trueLoginPopup } from '../../actions/userActions';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-
+import { 
+  setHomePage, 
+  setRestaurantsPage, 
+  setBarsPage, 
+  setProfilePage,
+  clearPages
+ } from '../../actions/currentPageActions';
 
 
 
@@ -21,6 +26,10 @@ const expand = 'lg';
 
 function MainNav() {
   const {loginPopup} = useSelector((state) => state.popups)
+
+  const [inputUserName, setInputUserName] = useState();
+  const [inputPassword, setInputPassword] = useState();
+  
   const dispatch = useDispatch()
 
   return (
@@ -41,9 +50,10 @@ function MainNav() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav data-bs-theme="dark" className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Restaurants</Nav.Link>
-                  <Nav.Link href="#action2">Bars</Nav.Link>
-                  <Nav.Link href="#action2">Beers</Nav.Link>
+
+                  <Nav.Link href="#action1" onClick={() => {dispatch(setRestaurantsPage())}}>Restaurants</Nav.Link>
+                  <Nav.Link href="#action2" onClick={()=> {dispatch(setBarsPage())}}>Bars</Nav.Link>
+                  <Nav.Link href="#action3">Excursions</Nav.Link>
                   <NavDropdown
                     title="Submit"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
@@ -69,10 +79,9 @@ function MainNav() {
                     aria-label="Search"
                   />
                   <Button variant="outline-warning">Search</Button>
-                  <button className="btn outline-warning" onClick={() => {
-                    dispatch(trueLoginPopup()
+                  <button className="btn outline-warning mx-1" onClick={() => {
+                      dispatch(trueLoginPopup()
                     )}}>Login</button>
-                    {console.log(loginPopup)}
                 </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

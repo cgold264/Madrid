@@ -1,6 +1,8 @@
 import { setLoginUser } from '../actions/userActions';
 import {
-    fetchUsers
+    fetchUsers,
+    addNewUser,
+    validateUserLogin
 } from './service';
 
 export const allUsers = () => async (dispatch) => {
@@ -12,6 +14,22 @@ export const allUsers = () => async (dispatch) => {
     }
   };
 
-export const validateLogin = (userName, Password) => {
-  console.log(userName, Password)
+export async function validateLogin(payload) {
+  console.log(payload)
+  try {
+    const data = await validateUserLogin(payload);
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+export async function addUser(payload) {
+  try {
+    await addNewUser(payload);
+    console.log('add Restaurant service');
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }

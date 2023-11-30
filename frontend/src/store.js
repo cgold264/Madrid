@@ -6,6 +6,7 @@ import dataListsReducer from './reducers/dataLists';
 import userReducer from './reducers/user';
 import popupsReducer from './reducers/popups';
 import establishmentReducer from './reducers/establishment';
+import currentPageReducer from './reducers/currentPage';
 // Import your reducers here (we'll create them in Step 4)
 
 const rootReducer = combineReducers({
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   dataLists: dataListsReducer,
   user: userReducer,
   popups: popupsReducer,
-  establistment: establishmentReducer
+  establishment: establishmentReducer,
+  currentPage: currentPageReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

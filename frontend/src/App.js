@@ -9,6 +9,7 @@ import LoginPopup from'./components/LoginPopup/LoginPopup';
 import Footer from './components/footer/Footer';
 import {addUserLocation} from './actions/userActions';
 import {useSelector, useDispatch } from 'react-redux';
+import BarPage from './components/BarPage/BarPage';
 import {allBars} from './services/tableDataService';
 import './App.scss';
 
@@ -27,12 +28,13 @@ const defaultTheme = createTheme({
 function App() {
   const dispatch = useDispatch();
   const {inputRestaurant} = useSelector((state) => state.popups)
+  const {
+    homePage,
+    restaurantsPage,
+    barsPage,
+    profilePage
+  } = useSelector((state) => state.currentPage)
   const {loginPopup} = useSelector((state) => state.popups)
-
-  useEffect(() => {
-    allBars().then(data => {
-    })
-   }, []);
 
    useEffect(() => {
     if (navigator.geolocation) {
@@ -51,17 +53,42 @@ function App() {
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
+
       {inputRestaurant ? 
           <RestaurantPopup />
       : null}
+
       {loginPopup ? 
           <LoginPopup />
       : null}
+
+      {/* main navBar */}
       <MainNav />
-      {/* Restaurant Page */}
-      
-      <RestaurantPage />
-      {/* End Restaurant Page */}
+
+      {/* Home Page */}
+      {homePage ?
+          <RestaurantPage />
+        : null
+      }
+
+      {/* restaurant page */}
+      {restaurantsPage ?
+          <RestaurantPage />
+        : null
+      }
+
+      {/* bars page */}
+      {barsPage ?
+          <BarPage />
+        : null
+      }
+
+      {/* profile page */}
+      {profilePage ?
+          <RestaurantPage />
+        : null
+      }
+
       {/* Footer */}
       <Footer />
     </ThemeProvider>
