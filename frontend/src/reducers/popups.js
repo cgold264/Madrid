@@ -2,28 +2,33 @@
 const initialState = {
     inputRestaurant: false,
     itemPopup: false,
-    loginPopup: false
+    loginPopup: false,
+    deletePopup: false
   };
   
   const popupsReducer = (state = initialState, action) => {
     switch (action.type) {
       case 'FALSE_LOGIN_POPUP':
-        return { ...state, loginPopup: false};
+        return { ...state, loginPopup: false };
       case 'TRUE_LOGIN_POPUP':
-        return { ...state, loginPopup: true};
+        return { ...state, loginPopup: true };
       case 'FALSE_INPUT_RESTAURANT':
-        return { ...state, inputRestaurant: false};
+        return { ...state, inputRestaurant: false };
       case 'TRUE_INPUT_RESTAURANT':
-        return { ...state, inputRestaurant: true};
+        return { ...state, inputRestaurant: true };
       case 'FALSE_INPUT_ITEM':
-          return { ...state, itemPopup: false};
+        return { ...state, itemPopup: false };
       case 'TRUE_INPUT_ITEM':
-          return { ...state, itemPopup: true};
+        return { ...state, itemPopup: true };
+      case 'FALSE_DELETE_ITEM':
+        return { ...state, deletePopup: false };
+      case 'TRUE_DELETE_ITEM':
+        return { ...state, deletePopup: true };
       case 'CLEAR_ALL':
         return {
-            inputRestaurant: false,
-            itemPopup: false
-        }
+          inputRestaurant: false,
+          itemPopup: false,
+        };
       default:
         return state;
     }

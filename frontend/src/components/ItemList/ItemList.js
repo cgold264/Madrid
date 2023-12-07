@@ -10,6 +10,11 @@ import CardContent from '@mui/material/CardContent';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CardActions from '@mui/material/CardActions';
 import ItemPopup from '../Popups/itemPopup/ItemPopup';
+import DeletePopup from '../Popups/DeletePopup/DeletePopup';
+import {
+  falseDeletePopup,
+  trueDeletePopup,
+} from '../../actions/itemActions';
 
 import imageUrl from './plaza_mayor.jpg'
 import AOS from 'aos';
@@ -19,56 +24,23 @@ const BingMapsKey = 'AmXWvfcsOa3d9hKybGtO0alCJkK41JP3fefPZc0p1aoVT2qixWMPwCcfMy2
 
 function RestaurantList(props) {
   const { userName } = useSelector((state) => state.user);
-  const contentStyle = { width: '300px' };
+  const { deletePopup } = useSelector((state) => state.user);
+    const dispatch = useDispatch();
 
+  
   useEffect(() => {
     AOS.init();
   }, []);
+
   const[itemOpen, setItemOpen] = useState({open: false, data: {}})
-  const [deletePopup, setDeletePopup] = useState(false);
+  const [deleteItem, setDeleteItem] = useState(null);
 
 
 
     return (
       <section id="restaurantList">
         {deletePopup ? (
-          <Popup
-            open={deletePopup}
-            position="center"
-            onClose={() => {
-              setDeletePopup(false);
-            }}
-            {...{
-              contentStyle,
-            }}
-          >
-            <button
-              className="close"
-              onClick={() => {
-                setDeletePopup(false);
-              }}
-            >
-              &times;
-            </button>
-            <div className="row text-center ">
-              <h3>Delete Establishment?</h3>
-            </div>
-            <div className="row m-3 text-center">
-              <div className="col-6">
-                <button className="btn btn-warning">Delete</button>
-              </div>
-              <div className="col-6">
-                <button
-                  className="btn btn-outline-warning"
-                  onClick={() => {
-                    setDeletePopup(false);
-                  }}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </Popup>
+          <DeletePopup item={deleteItem} />
         ) : null}
         {itemOpen.open ? (
           <ItemPopup
@@ -137,7 +109,8 @@ function RestaurantList(props) {
                               <button
                                 className="btn"
                                 onClick={() => {
-                                  setDeletePopup(true);
+                                  setDeleteItem(card);
+                                  dispatch(trueDeletePopup());
                                 }}
                               >
                                 <DeleteIcon data-testid="DeleteIcon"></DeleteIcon>

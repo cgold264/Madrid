@@ -4,6 +4,7 @@ import {
   addNewRestaurant,
   fetchEstablishment,
   fetchExcursions,
+  deleteEstablishmentService,
 } from './service';
 import { addAllRestaurants } from '../actions/restaurantActions';
 import { addAllBars } from '../actions/barActions';
@@ -45,6 +46,14 @@ export const allEstablishments = () => async (dispatch) => {
       const data = await fetchEstablishment(userName);
       console.log('table service', data);
       dispatch(addAllEstablishments(data));
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  export const deleteEstablishment = (establishment) => async (dispatch) => {
+    try {
+      await deleteEstablishmentService(establishment);
     } catch (error) {
       console.error('Error:', error);
     }

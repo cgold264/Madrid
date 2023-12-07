@@ -6,5 +6,5 @@ CREATE TABLE IF NOT EXISTS ratings(
     establishment int NOT NULL,
     review NVARCHAR(255),
     FOREIGN KEY(submitter) REFERENCES user(user_name),
-    Foreign Key (establishment) REFERENCES establishment(id)
+    Foreign Key (establishment) REFERENCES establishment(id) ON DELETE CASCADE
 );

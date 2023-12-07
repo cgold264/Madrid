@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS bar (
     drink VARCHAR(255) NOT NULL,
     price FLOAT(5, 2) NOT NULL,
     lit_rating int,
-    FOREIGN KEY (establishment) REFERENCES establishment(id)
+    FOREIGN KEY (establishment) REFERENCES establishment(id) ON DELETE CASCADE
 );
 
 -- Insert sample data if needed

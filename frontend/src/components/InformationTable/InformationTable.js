@@ -11,13 +11,20 @@ import TableRow from '@mui/material/TableRow';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import ItemPopup from '../Popups/itemPopup/ItemPopup';
+import DeletePopup from '../Popups/DeletePopup/DeletePopup';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  trueDeletePopup,
+} from '../../actions/itemActions';
 
 
 export default function InformationTable(props) {
   const {userName} = useSelector((state) => state.user)
+  const { deletePopup } = useSelector((state) => state.popups);
+    const dispatch = useDispatch();
+
   const contentStyle = { width: '300px' };
 
 
@@ -26,45 +33,11 @@ export default function InformationTable(props) {
   }, []);
 
   const[itemOpen, setItemOpen] = useState({open: false})
-  const [deletePopup, setDeletePopup] = useState(false);
+  const [deleteItem, setDeleteItem] = useState(null)
 
   return (
     <section id="RestaurantTable" className="bg-dark">
-      {deletePopup ? (
-        <Popup
-          open={deletePopup}
-          position="center"
-          onClose={() => {
-            setDeletePopup(false);
-          }}
-          {...{
-            contentStyle,
-          }}
-        >
-          <button
-            className="close"
-            onClick={() => {
-              setDeletePopup(false);
-            }}
-          >
-            &times;
-          </button>
-          <div className="row text-center ">
-            <h3>Delete Establishment?</h3>
-          </div>
-          <div className="row m-3 text-center">
-            <div className="col-6">
-              <button className="btn btn-warning">Delete</button>
-            </div>
-            <div className="col-6">
-              <button className="btn btn-outline-warning" 
-              onClick={() => {
-                setDeletePopup(false);
-              }}>Cancel</button>
-            </div>
-          </div>
-        </Popup>
-      ) : null}
+      {deletePopup ? <DeletePopup item={deleteItem} /> : null}
       {itemOpen.open ? (
         <ItemPopup
           item={itemOpen.item}
@@ -114,7 +87,9 @@ export default function InformationTable(props) {
                           <button
                             className="btn"
                             onClick={() => {
-                              setDeletePopup(true);
+                              setDeleteItem(row);
+                              console.log("Call", deleteItem)
+                              dispatch(trueDeletePopup());
                             }}
                           >
                             <DeleteIcon data-testid="DeleteIcon"></DeleteIcon>

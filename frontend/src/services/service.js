@@ -68,6 +68,26 @@ export function fetchEstablishmentUser(userName) {
     });
 }
 
+export function deleteEstablishmentService(establishment) {
+  return fetch(apiUrl + '/establishment/delete', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json', // Set the appropriate content type
+    },
+
+    body: JSON.stringify(establishment), // Convert the payload to a URL-encoded string
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+}
+
 export function fetchRestaurants() {
     return fetch(apiUrl + "/restaurants/all")
         .then(response => {

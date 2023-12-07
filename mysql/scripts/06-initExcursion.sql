@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS excursion (
     time_occupied FLOAT(5, 2) NOT NULL,
     reservation_needed BOOL,
     day_activity BOOL,
-    FOREIGN KEY (establishment) REFERENCES establishment(id)
+    FOREIGN KEY (establishment) REFERENCES establishment(id) ON DELETE CASCADE
 );
 
 INSERT INTO excursion (establishment, item, price, time_occupied, reservation_needed, day_activity) VALUES 
