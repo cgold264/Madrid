@@ -15,3 +15,7 @@ export const falseLoginPopup = () => ({
 export const trueLoginPopup = () => ({
     type: 'TRUE_LOGIN_POPUP'
 })
+
+export const clearLoginData = () => ({
+  type: 'CLEAR_USER',
+});

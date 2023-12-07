@@ -17,7 +17,6 @@ export const allUsers = () => async (dispatch) => {
 export async function validateLogin(payload) {
   try {
     const data = await validateUserLogin(payload);
-    console.log(data);
     return data;
   } catch (error) {
     console.error('Error:', error);

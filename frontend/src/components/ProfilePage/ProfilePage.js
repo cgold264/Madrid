@@ -1,24 +1,27 @@
 import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import { useSelector, useDispatch } from 'react-redux';
 import InformationTable from '../InformationTable/InformationTable';
-import { allRestaurants } from '../../services/tableDataService';
-import { useDispatch } from 'react-redux';
+import { allEstablishmentsUser } from '../../services/tableDataService';
 import 'reactjs-popup/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function RestaurantPage() {
 
-  const dispatch = useDispatch();
+    const {userEstablishmentList} = useSelector((state) => state.dataLists)
 
-  useEffect(() => {
-    dispatch(allRestaurants());
-  }, [dispatch]);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(allEstablishmentsUser());
+    }, [dispatch]);
 
   return (
     <>
       <InformationTable
         rows={['Name', 'Item', 'Submitter']}
-        data={[]}
+        data={userEstablishmentList}
       />
     </>
   );

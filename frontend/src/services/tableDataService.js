@@ -28,6 +28,16 @@ export const allEstablishments = () => async (dispatch) => {
     }
   };
 
+  export const allEstablishmentsUser = (userName) => async (dispatch) => {
+    try {
+      const data = await fetchEstablishment(userName);
+      console.log('table service', data);
+      dispatch(addAllEstablishments(data));
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
 export const allRestaurants = () => async (dispatch) => {
     try {
       const data = await fetchRestaurants();

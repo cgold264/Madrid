@@ -34,6 +34,22 @@ export function fetchEstablishment() {
         });
 }
 
+export function fetchEstablishmentUser(userName) {
+  return fetch(apiUrl + '/establishment/getAllUser')
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+}
+
 export function fetchRestaurants() {
     return fetch(apiUrl + "/restaurants/all")
         .then(response => {
@@ -83,7 +99,6 @@ export function validateUserLogin(payload) {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      console.log(response)
       return response.json();
     })
     .catch((error) => {

@@ -24,7 +24,6 @@ function Leaders(props) {
       : null}
       <div data-aos="fade-up">
             <Grid container spacing={5} alignItems="flex-end">
-            {console.log(tiers)}
 
               {tiers?.map((tier) => (
 
