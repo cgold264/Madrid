@@ -18,10 +18,3 @@ export const clearAllRestaurant = () => ({
     type: 'CLEAR',
 });
 
-export const falseRestaurantPopup = () => ({
-    type: 'FALSE_INPUT_RESTAURANT'
-})
-
-export const trueRestaurantPopup = () => ({
-    type: 'TRUE_INPUT_RESTAURANT'
-})

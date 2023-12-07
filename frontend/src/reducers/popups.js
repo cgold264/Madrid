@@ -1,10 +1,10 @@
 // reducers/restaurant.js
 const initialState = {
-    inputRestaurant: false,
-    itemPopup: false,
-    loginPopup: false,
-    deletePopup: false
-  };
+  inputPopup: false,
+  itemPopup: false,
+  loginPopup: false,
+  deletePopup: false,
+};
   
   const popupsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -12,10 +12,10 @@ const initialState = {
         return { ...state, loginPopup: false };
       case 'TRUE_LOGIN_POPUP':
         return { ...state, loginPopup: true };
-      case 'FALSE_INPUT_RESTAURANT':
-        return { ...state, inputRestaurant: false };
-      case 'TRUE_INPUT_RESTAURANT':
-        return { ...state, inputRestaurant: true };
+      case 'FALSE_INPUT_POPUP':
+        return { ...state, inputPopup: false };
+      case 'TRUE_INPUT_POPUP':
+        return { ...state, inputPopup: true };
       case 'FALSE_INPUT_ITEM':
         return { ...state, itemPopup: false };
       case 'TRUE_INPUT_ITEM':
@@ -28,6 +28,8 @@ const initialState = {
         return {
           inputRestaurant: false,
           itemPopup: false,
+          loginPopup: false,
+          deletePopup: false,
         };
       default:
         return state;

@@ -10,7 +10,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import {useSelector, useDispatch} from 'react-redux';
 import 'reactjs-popup/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { trueRestaurantPopup } from '../../actions/restaurantActions';
+import { trueInputPopup } from '../../actions/itemActions';
 import { trueLoginPopup } from '../../actions/userActions';
 import { 
   setHomePage, 
@@ -153,7 +153,7 @@ function MainNav() {
                   >
                     <NavDropdown.Item
                       onClick={() => {
-                        dispatch(trueRestaurantPopup());
+                        dispatch(trueInputPopup());
                       }}
                     >
                       Submit Restaurant

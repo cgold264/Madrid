@@ -4,14 +4,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import MainNav from './components/mainNav/MainNav';
 import RestaurantPage from'./components/RestaurantPage/RestaurantPage';
-import RestaurantPopup from'./components/Popups/RestaurantPopup/RestaurantPopup';
+import SubmitPopup from'./components/Popups/SubmitPopup/SubmitPopup';
 import LoginPopup from'./components/Popups/LoginPopup/LoginPopup';
 import Footer from './components/Footer/Footer';
 import {addUserLocation} from './actions/userActions';
 import {useSelector, useDispatch } from 'react-redux';
 import BarPage from './components/BarPage/BarPage';
 import ExcursionsPage from './components/ExcursionsPage/ExcursionsPage';
-import {allBars} from './services/tableDataService';
 import './App.scss';
 
 
@@ -28,7 +27,7 @@ const defaultTheme = createTheme({
 
 function App() {
   const dispatch = useDispatch();
-  const {inputRestaurant} = useSelector((state) => state.popups)
+  const { inputPopup } = useSelector((state) => state.popups);
   const {
     homePage,
     restaurantsPage,
@@ -50,50 +49,35 @@ function App() {
 
 
   return (
-    
-    <div className='bg-dark'>
-    <ThemeProvider theme={defaultTheme}>
-      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
-      <CssBaseline />
+    <div className="bg-dark">
+      <ThemeProvider theme={defaultTheme}>
+        <GlobalStyles
+          styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }}
+        />
+        <CssBaseline />
 
-      {inputRestaurant ? 
-          <RestaurantPopup />
-      : null}
+        {inputPopup ? <SubmitPopup /> : null}
 
-      {loginPopup ? 
-          <LoginPopup />
-      : null}
+        {loginPopup ? <LoginPopup /> : null}
 
-      {/* main navBar */}
-      <MainNav />
+        {/* main navBar */}
+        <MainNav />
 
-      {/* Home Page */}
-      {homePage ?
-          <RestaurantPage />
-        : null
-      }
+        {/* Home Page */}
+        {homePage ? <RestaurantPage /> : null}
 
-      {/* restaurant page */}
-      {restaurantsPage ?
-          <RestaurantPage />
-        : null
-      }
+        {/* restaurant page */}
+        {restaurantsPage ? <RestaurantPage /> : null}
 
-      {/* bars page */}
-      {barsPage ?
-          <BarPage />
-        : null
-      }
+        {/* bars page */}
+        {barsPage ? <BarPage /> : null}
 
-      {/* profile page */}
-      {excursionsPage ?
-          <ExcursionsPage />
-        : null
-      }
+        {/* profile page */}
+        {excursionsPage ? <ExcursionsPage /> : null}
 
-      {/* Footer */}
-      <Footer />
-    </ThemeProvider>
+        {/* Footer */}
+        <Footer />
+      </ThemeProvider>
     </div>
   );
 }

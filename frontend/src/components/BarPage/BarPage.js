@@ -6,8 +6,8 @@ import Leaders from '../Leaders/Leaders';
 import RestaurantList from '../ItemList/ItemList';
 import InformationTable from '../InformationTable/InformationTable';
 import {allBars} from '../../services/tableDataService';
+import { trueInputPopup } from '../../actions/itemActions';
 import { useSelector, useDispatch } from 'react-redux';
-import {trueRestaurantPopup} from '../../actions/restaurantActions';
 import { trueLoginPopup } from '../../actions/userActions';
 import 'reactjs-popup/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -48,7 +48,7 @@ function BarPage() {
                 variant="warning"
                 onClick={() => {
                   if (userName) {
-                    dispatch(trueRestaurantPopup());
+                    dispatch(trueInputPopup());
                   } else {
                     dispatch(trueLoginPopup());
                   }

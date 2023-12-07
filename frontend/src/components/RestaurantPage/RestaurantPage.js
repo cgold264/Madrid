@@ -7,7 +7,7 @@ import RestaurantList from '../ItemList/ItemList';
 import RestaurantTable from '../InformationTable/InformationTable';
 import {allRestaurants} from '../../services/tableDataService';
 import { useSelector, useDispatch } from 'react-redux';
-import {trueRestaurantPopup} from '../../actions/restaurantActions';
+import {trueInputPopup} from '../../actions/itemActions';
 import 'reactjs-popup/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { TypeAnimation } from 'react-type-animation';
@@ -68,7 +68,7 @@ function RestaurantPage() {
                 variant="warning"
                 onClick={() => {
                   if (userName) {
-                    dispatch(trueRestaurantPopup());
+                    dispatch(trueInputPopup());
                   } else {
                     dispatch(trueLoginPopup());
                   }
