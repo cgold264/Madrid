@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import StarIcon from '@mui/icons-material/StarBorder';
 import Grid from '@mui/material/Grid';
-import ItemPopup from '../itemPopup/ItemPopup';
+import ItemPopup from '../Popups/itemPopup/ItemPopup';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 

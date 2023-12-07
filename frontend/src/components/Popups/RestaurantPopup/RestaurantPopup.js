@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
 import { useSelector, useDispatch } from 'react-redux';
-import {addSingleRestaurant, falseRestaurantPopup} from '../../actions/restaurantActions';
-import {addRestaurant} from '../../services/tableDataService';
+import {addSingleRestaurant, falseRestaurantPopup} from '../../../actions/restaurantActions';
+import {addRestaurant} from '../../../services/tableDataService';
 
 export default function RestaurantPopup(){
 

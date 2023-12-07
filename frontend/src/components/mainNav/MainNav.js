@@ -17,24 +17,22 @@ import {
   setRestaurantsPage, 
   setBarsPage, 
   setProfilePage,
-  clearPages
+  clearPages,
+  setExcursionsPage
  } from '../../actions/currentPageActions';
 
  import { clearLoginData } from '../../actions/userActions';
 
-
-
-
-
 const expand = 'lg';
 
 function MainNav() {
-  const contentStyle = { width: '300px' };
+  const contentStyle = { maxWidth: '300px' };
 
   const {loginPopup} = useSelector((state) => state.popups)
   const { userName } = useSelector((state) => state.user);
 
   const [logoutPopup, setLogoutPopup] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
 
 
   const [inputUserName, setInputUserName] = useState();
@@ -68,11 +66,15 @@ function MainNav() {
           </div>
           <div className="row m-3 text-center">
             <div className="col-6">
-              <button className="btn btn-warning"
-              onClick={() => {
-                dispatch(clearLoginData());
-                setLogoutPopup(false);
-              }}>Logout</button>
+              <button
+                className="btn btn-warning"
+                onClick={() => {
+                  dispatch(clearLoginData());
+                  setLogoutPopup(false);
+                }}
+              >
+                Logout
+              </button>
             </div>
             <div className="col-6">
               <button
@@ -95,11 +97,20 @@ function MainNav() {
       >
         <Container fluid>
           <Navbar.Brand href="#">Travel Madrid</Navbar.Brand>
-          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+          <Navbar.Toggle
+            aria-controls={`offcanvasNavbar-expand-${expand}`}
+            onClick={() => {
+              setMenuOpen(!menuOpen);
+            }}
+          />
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-${expand}`}
             aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
             placement="end"
+            show={menuOpen}
+            onHide={() => {
+              setMenuOpen(false);
+            }}
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
@@ -112,7 +123,7 @@ function MainNav() {
                 className="justify-content-end flex-grow-1 pe-3"
               >
                 <Nav.Link
-                  href="#action1"
+                  href="#restaurants"
                   onClick={() => {
                     dispatch(setRestaurantsPage());
                   }}
@@ -120,34 +131,43 @@ function MainNav() {
                   Restaurants
                 </Nav.Link>
                 <Nav.Link
-                  href="#action2"
+                  href="#bars"
                   onClick={() => {
                     dispatch(setBarsPage());
                   }}
                 >
                   Bars
                 </Nav.Link>
-                <Nav.Link href="#action3">Excursions</Nav.Link>
-                <NavDropdown
-                  title="Submit"
-                  id={`offcanvasNavbarDropdown-expand-${expand}`}
+                <Nav.Link
+                  href="#excursions"
+                  onClick={() => {
+                    dispatch(setExcursionsPage());
+                  }}
                 >
-                  <NavDropdown.Item
-                    onClick={() => {
-                      dispatch(trueRestaurantPopup());
-                    }}
+                  Excursions
+                </Nav.Link>
+                {userName ? (
+                  <NavDropdown
+                    title="Submit"
+                    id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
-                    Submit Restaurant
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action4">
-                    Submit Bar
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">
-                    Submit Beer
-                  </NavDropdown.Item>
-                </NavDropdown>
+                    <NavDropdown.Item
+                      onClick={() => {
+                        dispatch(trueRestaurantPopup());
+                      }}
+                    >
+                      Submit Restaurant
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action4">
+                      Submit Bar
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action5">
+                      Submit Beer
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                ) : null}
               </Nav>
               <Form className="d-flex">
                 <Form.Control
@@ -157,29 +177,30 @@ function MainNav() {
                   aria-label="Search"
                 />
                 <Button variant="outline-warning">Search</Button>
-                {userName ? (
-                  <button
-                    id="loggedInUserButton"
-                    className="btn outline-warning mx-1"
-                    onClick={() => {
-                      setLogoutPopup(true);
-                    }}
-                  >
-                    {`Hi, ${userName}!`}
-                  </button> ) 
-                : (
-                  <button
-                    id="loginButton"
-                    className="btn outline-warning mx-1"
-                    onClick={() => {
-                      dispatch(trueLoginPopup());
-                    }}
-                  >
-                    Login
-                  </button>
-                )
-              }
               </Form>
+              {userName ? (
+                <button
+                  id="loggedInUserButton"
+                  className="btn outline-warning mx-1 text-nowrap"
+                  onClick={() => {
+                    setLogoutPopup(true);
+                    setMenuOpen(false);
+                  }}
+                >
+                  {`Hi, ${userName}!`}
+                </button>
+              ) : (
+                <button
+                  id="loginButton"
+                  className="btn outline-warning mx-1"
+                  onClick={() => {
+                    dispatch(trueLoginPopup());
+                    setMenuOpen(false);
+                  }}
+                >
+                  Login
+                </button>
+              )}
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>

@@ -4,12 +4,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import MainNav from './components/mainNav/MainNav';
 import RestaurantPage from'./components/RestaurantPage/RestaurantPage';
-import RestaurantPopup from'./components/RestaurantPopup/RestaurantPopup';
-import LoginPopup from'./components/LoginPopup/LoginPopup';
-import Footer from './components/footer/Footer';
+import RestaurantPopup from'./components/Popups/RestaurantPopup/RestaurantPopup';
+import LoginPopup from'./components/Popups/LoginPopup/LoginPopup';
+import Footer from './components/Footer/Footer';
 import {addUserLocation} from './actions/userActions';
 import {useSelector, useDispatch } from 'react-redux';
 import BarPage from './components/BarPage/BarPage';
+import ExcursionsPage from './components/ExcursionsPage/ExcursionsPage';
 import {allBars} from './services/tableDataService';
 import './App.scss';
 
@@ -32,7 +33,8 @@ function App() {
     homePage,
     restaurantsPage,
     barsPage,
-    profilePage
+    profilePage,
+    excursionsPage
   } = useSelector((state) => state.currentPage)
   const {loginPopup} = useSelector((state) => state.popups)
 
@@ -84,8 +86,8 @@ function App() {
       }
 
       {/* profile page */}
-      {profilePage ?
-          <RestaurantPage />
+      {excursionsPage ?
+          <ExcursionsPage />
         : null
       }
 

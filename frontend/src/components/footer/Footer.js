@@ -4,7 +4,10 @@ export default function Footer(){
     return (<>
     <footer className="text-center text-white mt-3">
       <div className="container p-4">
-        <section className="">
+        <section className="footer">
+          <div className='row'>
+            <h1 className="text-light"><b>Picks of the Day</b></h1>
+          </div>
           <div className="row justify-content-md-center">
             <div className="col-lg-2 col-md-12 mb-4 mb-md-0">
               <div

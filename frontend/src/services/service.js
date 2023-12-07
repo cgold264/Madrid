@@ -18,6 +18,24 @@ export function fetchBars() {
         });
 }
 
+export function fetchExcursions() {
+  return fetch(apiUrl + '/excursions/all')
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // returnVal = data
+      // console.log("service", data);
+      return data;
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+}
+
 export function fetchEstablishment() {
     return fetch(apiUrl + "/establishment/all")
         .then(response => {

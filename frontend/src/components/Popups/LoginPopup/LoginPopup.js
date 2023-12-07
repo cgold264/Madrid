@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import Popup from 'reactjs-popup';
 
 import { useSelector, useDispatch } from 'react-redux';
-import {falseLoginPopup} from '../../actions/userActions';
-import { validateLogin } from '../../services/loginService';
+import {falseLoginPopup} from '../../../actions/userActions';
+import { validateLogin } from '../../../services/loginService';
 
 
 export default function LoginPopup(){
@@ -12,6 +12,7 @@ export default function LoginPopup(){
     const[loginPage, setLoginPage] = useState(true) 
     const[userName, setUserName] = useState(null) 
     const[password, setPassword] = useState(null) 
+    
     const dispatch = useDispatch();
 
     return (

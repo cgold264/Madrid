@@ -10,7 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import ItemPopup from '../itemPopup/ItemPopup';
+import ItemPopup from '../Popups/itemPopup/ItemPopup';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';

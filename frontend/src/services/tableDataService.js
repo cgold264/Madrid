@@ -1,11 +1,13 @@
 import {
-fetchBars,
-fetchRestaurants,
-addNewRestaurant,
-fetchEstablishment
+  fetchBars,
+  fetchRestaurants,
+  addNewRestaurant,
+  fetchEstablishment,
+  fetchExcursions,
 } from './service';
 import { addAllRestaurants } from '../actions/restaurantActions';
 import { addAllBars } from '../actions/barActions';
+import { addAllExcursions } from '../actions/excursionActions';
 import { addAllEstablishments } from '../actions/establishmentActions';
 
 export const allBars = () => async (dispatch) => {
@@ -13,6 +15,16 @@ export const allBars = () => async (dispatch) => {
     const data = await fetchBars();
     console.log("table service", data);
     dispatch(addAllBars(data));
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+export const allExcursions = () => async (dispatch) => {
+  try {
+    const data = await fetchExcursions();
+    console.log('table service', data);
+    dispatch(addAllExcursions(data));
   } catch (error) {
     console.error('Error:', error);
   }
