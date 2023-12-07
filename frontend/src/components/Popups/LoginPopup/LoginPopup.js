@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Popup from 'reactjs-popup';
 
 import { useSelector, useDispatch } from 'react-redux';
-import {falseLoginPopup} from '../../../actions/userActions';
+import {falseLoginPopup, trueLoginPopup} from '../../../actions/userActions';
 import { validateLogin } from '../../../services/loginService';
 
 
@@ -85,7 +85,10 @@ export default function LoginPopup(){
                       id="signInButton"
                       className="btn btn-primary btn-block mb-4"
                       onClick={() => {                       
-                        validateLogin({user_name: userName, password: password});
+                        dispatch(validateLogin({userName: userName, password: password}));
+                        if(userName){
+                          dispatch(falseLoginPopup());
+                        }
                       }}
                     >
                       Sign in

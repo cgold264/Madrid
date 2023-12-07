@@ -2,6 +2,8 @@ package com.example.madrid.madrid;
 
 import java.math.BigDecimal;
 
+import org.hibernate.annotations.Nationalized;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

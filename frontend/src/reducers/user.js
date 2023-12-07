@@ -1,6 +1,6 @@
 // reducers/user.js
 const initialState = {
-    userName: "default",
+    userName: null,
     password: null,
     userLatitude: null,
     userLongitude: null

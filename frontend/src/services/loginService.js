@@ -14,10 +14,14 @@ export const allUsers = () => async (dispatch) => {
     }
   };
 
-export async function validateLogin(payload) {
+export const validateLogin = (payload) => async (dispatch) => {
   try {
-    const data = await validateUserLogin(payload);
-    return data;
+    const response = await validateUserLogin(payload);
+    if(response){
+      dispatch(setLoginUser(payload));
+    }
+    console.log("setting response", response);
+    return response;
   } catch (error) {
     console.error('Error:', error);
   }

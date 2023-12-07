@@ -114,10 +114,11 @@ export function validateUserLogin(payload) {
     body: JSON.stringify(payload), // Convert the payload to a URL-encoded string
   })
     .then((response) => {
+      console.log("Service Response", response)
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      return response.json();
+      return true;
     })
     .catch((error) => {
       console.error('Error fetching data:', error);
